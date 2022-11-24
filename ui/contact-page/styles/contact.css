@@ -173,6 +173,11 @@ a {
   padding: 20px;
 }
 
+.form .form-txt > .icons {
+  display: flex;
+  justify-content: space-around;
+}
+
 .form .form-txt img {
   /* flex-basis: 48%; */
   margin-top: 50px;
@@ -183,7 +188,7 @@ a {
 .form .form-txt h1 {
   font-weight: 400;
   color: var(--white);
-  /* margin-bottom: 40px; */
+  margin-bottom: 20px;
 }
 
 .form .form-txt h3 {
@@ -252,8 +257,9 @@ input:focus {
 @media (max-width: 500px) {
   .container {
     width: 75vw;
-    height: 70vh;
-    padding: 0;
+    /* height: 70vh; */
+    height: auto;
+    /* padding-right: 20px; */
     margin: 0;
   }
   .form {
@@ -261,11 +267,14 @@ input:focus {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 80vw;
+    width: inherit;
   }
 
   .form > .form-txt {
     width: 100%;
+  }
+  .form > .form-txt p {
+    font-size: 1.2rem;
   }
   .form > .form-details {
     width: 100%;
