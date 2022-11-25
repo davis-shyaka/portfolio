@@ -268,10 +268,13 @@ p {
 }
 
 a {
-  color: var(--secondary);
+  color: var(--bg-dark);
   letter-spacing: 0.1em;
 }
 
+.other-auth a {
+  color: var(--secondary);
+}
 /* Responsiveness */
 @media (max-width: 500px) {
   .container {
