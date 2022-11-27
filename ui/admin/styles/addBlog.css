@@ -1,0 +1,124 @@
+/* Googlefont Poppins CDN Link */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-card;
+  font-family: "Poppins", sans-serif;
+  color: var(--secondary);
+  line-height: 1.25;
+}
+:root {
+  --white: white;
+  --black: black;
+  --primary: #051937;
+  --secondary: #a8eb12;
+  --tertiary: #00ffff;
+  --complementive: #f9f871;
+  --danger: #ff00ff;
+  --bg-dark: #020917;
+  --bg-gradient: linear-gradient(180deg, #020917 0%, #1e3a8a 100%);
+}
+
+.content .stats .content-containers .recent-content {
+  width: auto !important;
+}
+
+.form {
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+  justify-content: space-between;
+  overflow: hidden;
+  font-weight: 300;
+  width: auto;
+}
+
+.form .image-input {
+  width: 40%;
+  padding: 20px;
+  background-color: gray;
+  border-radius: 10px 0 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form .image-input img {
+  margin-top: 50px;
+  width: 20px;
+  height: 100px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.form .form-details {
+  display: flex;
+  width: 60%;
+  flex-direction: column;
+  overflow: hidden;
+}
+.form .form-details input {
+  width: auto;
+  padding: 15px 20px;
+  background-color: var(--primary);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  color: var(--white);
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+input:focus {
+  border: none;
+  background-color: transparent;
+}
+
+.form .form-details textarea {
+  padding: 15px 20px;
+  color: var(--black);
+  outline: none;
+  border: none;
+  font-size: 14px;
+  resize: none;
+  border-radius: 10px;
+  background-color: var(--primary);
+  color: var(--white);
+  margin-bottom: 10px;
+}
+
+.form .form-details button {
+  padding: 15px 25px;
+  color: var(--black);
+  height: 21px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  background: var(--secondary);
+  border-radius: 0 10px 10px 0;
+  outline: none;
+  border: none;
+  font-size: 14px;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+/* Responsiveness */
+@media (max-width: 900px) {
+  .form {
+    flex-direction: column !important;
+    width: auto;
+  }
+
+  .form .image-input {
+    width: auto !important;
+  }
+
+  .form .form-details {
+    width: auto !important;
+  }
+}
