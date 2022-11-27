@@ -1,0 +1,171 @@
+/* Googlefont Poppins CDN Link */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-card;
+  font-family: "Poppins", sans-serif;
+  color: var(--secondary);
+  line-height: 1.25;
+}
+:root {
+  --white: white;
+  --black: black;
+  --primary: #051937;
+  --secondary: #a8eb12;
+  --tertiary: #00ffff;
+  --complementive: #f9f871;
+  --danger: #ff00ff;
+  --bg-dark: #020917;
+  --bg-gradient: linear-gradient(180deg, #020917 0%, #1e3a8a 100%);
+}
+
+/* Add Button */
+#add-blog {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: max-content;
+  background: var(--primary);
+  padding: 15px 14px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 1);
+  text-decoration: none;
+  margin-bottom: 13px;
+}
+
+#add-blog:hover {
+  background-color: var(--secondary);
+}
+#add-blog:hover a i,
+#add-blog:hover a span {
+  color: var(--bg-dark);
+}
+/* Table  Container*/
+.content .stats .content-containers .recent-content {
+  width: 85vw;
+  background: var(--bg-dark);
+  padding: 20px;
+  /* margin: 0 20px; */
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 1);
+  border: 1px solid var(--tertiary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: scroll;
+}
+
+/* Table Styles */
+table {
+  border: 1px solid var(--complementive);
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+  border-radius: 20px;
+}
+
+table caption {
+  font-family: "Poppins";
+  font-size: 1.5em;
+  margin: 0.5em 0 0.75em;
+  font-weight: 200;
+}
+
+table tr {
+  background-color: var(--bg-gradient);
+  border: 0.5px solid var(--complementive);
+  padding: 0.35em;
+  border-radius: 20px;
+}
+
+table th,
+table td {
+  padding: 0.625em;
+  text-align: left;
+  font-weight: 300;
+  color: var(--white);
+  line-break: anywhere;
+}
+
+table th {
+  font-size: 0.85em;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+table tr td img {
+  height: 70px;
+  width: 70px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-right: 10px;
+}
+
+table .actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  align-items: center;
+}
+
+#edit {
+  color: var(--tertiary);
+  font-size: larger;
+}
+
+#delete {
+  color: var(--danger);
+  font-size: larger;
+}
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  table tr {
+    border-bottom: 3px solid var(--complementive);
+    display: block;
+    margin-bottom: 0.625em;
+  }
+
+  table td {
+    border-bottom: 1px solid var(--tertiary);
+    display: block;
+    font-size: 0.8em;
+    text-align: right;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: 300;
+    color: var(--secondary);
+    font-family: "Poppins";
+    text-transform: uppercase;
+  }
+
+  table td:last-child {
+    border-bottom: 0;
+  }
+}

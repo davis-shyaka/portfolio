@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href=".././../styles/style.css" />
+    <link rel="stylesheet" href="../../styles/table-styles/blog.css" />
+    <link rel="stylesheet" href="../../styles/addBlog.css" />
+    <!-- Font Awesome Icons -->
+    <script
+      src="https://kit.fontawesome.com/92d2814568.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Davis</title>
+  </head>
+  <body>
+    <section class="content">
+      <nav>
+        <div class="logo">
+          <a href="../../index.html">
+            <i class="fa-solid fa-frog"></i>
+          </a>
+          <p class="logo_name">Salama, Davis?</p>
+        </div>
+        <div class="nav-links">
+          <ul class="nav-links">
+            <li>
+              <a href="../../index.html">
+                <i class="fa-solid fa-chart-line"></i>
+                <span class="links_name">Stats</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="./index.html">
+                <i class="fa-solid fa-newspaper"></i>
+                <span class="links_name">Blogs</span>
+              </a>
+            </li>
+            <li>
+              <a href="../entries/index.html">
+                <i class="fa-solid fa-users"></i>
+                <span class="links_name">Entries</span>
+              </a>
+            </li>
+            <li>
+              <a href="../mail/index.html">
+                <i class="fa-solid fa-envelope"></i>
+                <span class="links_name">Mail</span>
+              </a>
+            </li>
+            <li class="log_out">
+              <a href="#">
+                <i class="fa-solid fa-door-open"></i>
+                <span class="links_name">Walk Out</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="stats">
+        <div id="add-blog">
+          <a href="#">
+            <i class="fa-solid fa-save"></i>
+            <span>Save</span>
+          </a>
+        </div>
+        <div class="content-containers">
+          <div class="recent-content card">
+            <div class="content-details">
+              <form method="post" enctype="multipart/form-data">
+                <div class="form">
+                  <div class="image-input">
+                    <div>
+                      <label for="image_uploads"
+                        >Choose images to upload (PNG, JPG)</label
+                      >
+                      <input
+                        type="file"
+                        id="image_uploads"
+                        name="image_uploads"
+                        accept=".jpg, .jpeg, .png"
+                        multiple
+                      />
+                    </div>
+                    <div class="preview">
+                      <p>No files currently selected for upload</p>
+                    </div>
+                  </div>
+                  <div class="form-details">
+                    <input
+                      type="text"
+                      name="title"
+                      id="title"
+                      placeholder="Title"
+                      required
+                    />
+                    <input
+                      type="text"
+                      name="caption"
+                      id="caption"
+                      placeholder="Caption"
+                      required
+                    />
+                    <input
+                      type="text"
+                      name="author"
+                      id="author"
+                      placeholder="Author"
+                      required
+                    />
+                    <textarea
+                      name="article"
+                      id="article"
+                      rows="10"
+                      placeholder="Article"
+                      required
+                    ></textarea>
+                    <button>POST</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
