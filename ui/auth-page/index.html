@@ -47,31 +47,38 @@
           <div class="striped-line"></div>
         </div>
         <div class="other-login">
-          <form>
+          <form id="form">
             <div class="form">
               <div class="form-details">
                 <input
                   type="text"
-                  name="name"
-                  id="name"
-                  placeholder="Name"
-                  required
+                  name="names"
+                  id="names"
+                  placeholder="Names"
                 />
+                <div id="errorTxt" class="error"></div>
                 <input
                   type="email"
                   name="email"
                   id="email"
                   placeholder="Your Email"
-                  required
                 />
+                <div id="errorTxt" class="error"></div>
                 <input
                   type="password"
                   name="password"
                   id="password"
                   placeholder="Password"
-                  required
                 />
-                <button>Sign Up</button>
+                <div id="errorTxt" class="error"></div>
+                <!-- <input
+                  type="password"
+                  name="confirm-password"
+                  id="confirm-password"
+                  placeholder="Confirm Password"
+                />
+                <div id="errorTxt" class="error"></div> -->
+                <button id="submit" type="submit">Sign Up</button>
               </div>
             </div>
           </form>
