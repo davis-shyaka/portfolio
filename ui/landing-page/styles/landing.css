@@ -88,6 +88,10 @@ ol {
   transition: all 0.3s ease 0.1s;
   font-weight: 300;
 }
+#globalNav .menu li a i {
+  font-size: 1.5em;
+  transform: rotate(-90deg);
+}
 
 #globalNav .menu li a:hover {
   color: var(--secondary);
@@ -154,7 +158,7 @@ a {
 }
 
 .tile:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 .tile:hover > .description {
@@ -168,7 +172,7 @@ a {
   width: 100%;
   object-fit: cover;
   border-radius: inherit;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 100ms ease, transform 100ms ease;
   display: flex;
   flex-direction: column;
