@@ -70,10 +70,10 @@
         <div class="content-containers">
           <div class="recent-content card">
             <div class="content-details">
-              <form method="post" enctype="multipart/form-data">
+              <form id="form">
                 <div class="form">
                   <div class="image-input">
-                    <div>
+                    <div class="image_name">
                       <label for="image_uploads"
                         >Choose images to upload (PNG, JPG)</label
                       >
@@ -83,10 +83,12 @@
                         name="image_uploads"
                         accept=".jpg, .jpeg, .png"
                         multiple
+                        onchange="showPreview(event)"
                       />
+                      <div id="errorTxt"></div>
                     </div>
                     <div class="preview">
-                      <p>No files currently selected for upload</p>
+                      <img id="file-ip-1-preview" />
                     </div>
                   </div>
                   <div class="form-details">
@@ -95,37 +97,78 @@
                       name="title"
                       id="title"
                       placeholder="Title"
-                      required
                     />
+                    <div id="errorTxt"></div>
                     <input
                       type="text"
                       name="caption"
                       id="caption"
                       placeholder="Caption"
-                      required
                     />
+                    <div id="errorTxt"></div>
                     <input
                       type="text"
                       name="author"
                       id="author"
                       placeholder="Author"
-                      required
                     />
+                    <div id="errorTxt"></div>
                     <textarea
                       name="article"
                       id="article"
                       rows="10"
                       placeholder="Article"
-                      required
                     ></textarea>
-                    <button>POST</button>
+                    <div id="errorTxt"></div>
+                    <button type="submit">POST</button>
                   </div>
                 </div>
               </form>
             </div>
           </div>
         </div>
+        <div class="content-containers">
+          <div class="recent-content card">
+            <div class="content-details">
+              <table>
+                <caption>
+                  Published Blogs
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Cover</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Publ. Date</th>
+                    <th scope="col">Reads</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="articles">
+                  <tr>
+                    <td data-label="Cover">
+                      <img src="../../assets/avatar.jpg" alt="" srcset="" />
+                    </td>
+                    <td data-label="Title">Tried out React Native</td>
+                    <td data-label="Publ. Date">28/11/2022</td>
+                    <td data-label="Reads">114</td>
+                    <td data-label="Action">
+                      <div class="actions">
+                        <a href="#"
+                          ><i id="edit" class="fa-solid fa-pen-to-square"></i
+                        ></a>
+                        <a href="#"
+                          ><i id="delete" class="fa-solid fa-trash"></i
+                        ></a>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
+    <script src="./js/main.js"></script>
   </body>
 </html>
