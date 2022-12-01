@@ -1,13 +1,27 @@
-let form = document.getElementById("form");
-let image = document.getElementById("image_uploads");
-let title = document.getElementById("title");
-let caption = document.getElementById("caption");
-let author = document.getElementById("author");
-let article = document.getElementById("article");
-let errorTxt = document.querySelectorAll("#errorTxt");
-let articles = document.getElementById("articles");
-let preview = document.getElementById("file-ip-1-preview");
+const form = document.getElementById("form");
+const image = document.getElementById("image_uploads");
+const title = document.getElementById("title");
+const caption = document.getElementById("caption");
+const author = document.getElementById("author");
+const article = document.getElementById("article");
+const errorTxt = document.querySelectorAll("#errorTxt");
+const articles = document.getElementById("articles");
+const preview = document.getElementById("file-ip-1-preview");
+let blogArray = [];
+// let oldBlog = null;
+// let oldBlog = window.localStorage.getItem("blog");
+// console.log(oldBlog);
+// if (oldBlog.length > 0) {
+//   console.log("Old Blog Data: ");
+//   for (let i = 0; i < oldBlog.length; i++) {
+//     // console.log(oldBlog[i]);
+//   }
+// }
+// if (oldBlog) {
+//   blogArray = oldBlog;
+// }
 
+// previewing the cover image within the form
 function showPreview(event) {
   if (event.target.files.length > 0) {
     let src = URL.createObjectURL(event.target.files[0]);
@@ -16,15 +30,26 @@ function showPreview(event) {
   }
 }
 
+// on submit event
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log("button clicked");
-
+  // console.log("button clicked");
   if (formValidation()) {
-    acceptData();
+    blogArray.push(JSON.parse(JSON.stringify(acceptData())));
+    window.localStorage.setItem("blog", JSON.stringify(blogArray));
+    title.value = "";
+    caption.value = "";
+    author.value = "";
+    article.value = "";
+    image.value = "";
+    preview.style.display = "none";
+
+    window.location.replace("../../pages/blogs/index.html");
   }
+  // console.log(blogArray);
 });
 
+// let blogData =
 // validate the form
 let formValidation = () => {
   if (
@@ -40,7 +65,7 @@ let formValidation = () => {
   }
 };
 
-// engine function which will do the basic works
+// engine function which will do the basic check
 let engine = (id, serial, message, errorTxt) => {
   if (id.value.trim() === "") {
     showError(id, serial, message, errorTxt);
@@ -67,15 +92,27 @@ const showSuccess = (id, serial) => {
   id.style.border = "1px solid #a8eb12";
 };
 
-let data = {};
+// base data object
+const data = {
+  cover: "",
+  title: "",
+  caption: "",
+  author: "",
+  article: "",
+  posted: "",
+  reads: "",
+  comments: "",
+};
 
-let acceptData = () => {
-  data["cover"] = URL.createObjectURL(image.files[0]);
-  data["title"] = title.value;
-  data["caption"] = caption.value;
-  data["author"] = author.value;
-  data["article"] = article.value;
+// storing the data
+const acceptData = () => {
+  data.cover = URL.createObjectURL(image.files[0]);
+  data.title = title.value;
+  data.caption = caption.value;
+  data.author = author.value;
+  data.article = article.value;
 
+  // getting today's date
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, "0");
   let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
@@ -85,17 +122,20 @@ let acceptData = () => {
 
   today = dd + "/" + mm + "/" + yyyy + " - " + hr + ":" + min;
 
-  data["posted"] = today;
-  data["reads"] = 0;
+  data.posted = today;
+  data.reads = 0;
+  data.comments = 0;
 
-  createPost();
-  console.log(data);
+  return data;
 };
 
-let createPost = () => {
-  articles.insertAdjacentHTML(
-    "afterbegin",
-    `
+let createPost = (data) => {
+  const blogData = document.localStorage.getItem("blog");
+  // getting the stored data and inputing it int the table
+  blogData.forEach((data) => {
+    articles.insertAdjacentHTML(
+      "afterbegin",
+      `
   <tr>
   <td data-label="Cover">
     <img src="${data.cover}" alt="" srcset="" />
@@ -112,15 +152,15 @@ let createPost = () => {
 </tr>
    
     `
-  );
-  title.value = "";
-  caption.value = "";
-  author.value = "";
-  article.value = "";
-  image.value = "";
-  preview.style.display = "none";
+    );
+    title.value = "";
+    caption.value = "";
+    author.value = "";
+    article.value = "";
+    image.value = "";
+    preview.style.display = "none";
+  });
 };
-
 let deletePost = (e) => {
   e.parentElement.parentElement.parentElement.remove();
 };

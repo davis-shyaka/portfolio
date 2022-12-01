@@ -34,6 +34,10 @@
   width: auto;
 }
 
+.form::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
 .form .image-input {
   width: 40%;
   padding: 20px;
