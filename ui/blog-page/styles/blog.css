@@ -14,7 +14,7 @@ html {
   /* font-family: "Dosis", sans-serif; */
   font-weight: 500;
   letter-spacing: 0.1em;
-  height: 100vh;
+  /* height: 100vh; */
 }
 :root {
   --white: white;
@@ -38,11 +38,11 @@ body {
   overflow: auto;
   align-items: center;
   display: flex;
-  height: 100vh;
+  /* height: 100vh; */
   justify-content: center;
   margin: 0px;
-  padding-top: 25%;
-  padding-bottom: 50%;
+  /* padding-top: 25%; */
+  padding-bottom: 5%;
 }
 
 /* Navbar */
@@ -91,6 +91,11 @@ ol {
   cursor: pointer;
   transition: all 0.3s ease 0.1s;
   font-weight: 300;
+}
+
+#globalNav .menu li a i {
+  font-size: 1.5em;
+  transform: rotate(-90deg);
 }
 
 #globalNav .menu li a:hover {
@@ -145,7 +150,7 @@ a {
   flex-direction: row;
   justify-content: flex-start;
   margin: 2%;
-  margin-top: 40%;
+  /* margin-top: 40%; */
 }
 
 #topSection > .backCard {
@@ -157,15 +162,14 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 #topSection > .backCard > .avatar {
-  /* display: block; */
-  /* max-width: 100px; */
-  /* max-height: 100px; */
-  width: 95%;
-  height: 95%;
+  width: 99px;
+  height: 99px;
   border-radius: 50%;
+  object-fit: cover;
   transform: rotate(10deg);
 }
 

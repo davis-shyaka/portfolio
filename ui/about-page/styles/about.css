@@ -91,6 +91,11 @@ ol {
   font-weight: 300;
 }
 
+#globalNav .menu li a i {
+  font-size: 1.5em;
+  transform: rotate(-90deg);
+}
+
 #globalNav .menu li a:hover {
   color: var(--secondary);
 }
@@ -157,11 +162,9 @@ a {
 }
 
 #topSection > .backCard > .avatar {
-  /* display: block; */
-  /* max-width: 100px; */
-  /* max-height: 100px; */
   width: 95%;
   height: 95%;
+  object-fit: cover;
   border-radius: 50%;
   transform: rotate(10deg);
 }

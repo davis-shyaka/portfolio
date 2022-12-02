@@ -50,34 +50,42 @@
           <form id="form">
             <div class="form">
               <div class="form-details">
-                <input
-                  type="text"
-                  name="names"
-                  id="names"
-                  placeholder="Names"
-                />
-                <div id="errorTxt" class="error"></div>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Your Email"
-                />
-                <div id="errorTxt" class="error"></div>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="Password"
-                />
-                <div id="errorTxt" class="error"></div>
-                <!-- <input
-                  type="password"
-                  name="confirm-password"
-                  id="confirm-password"
-                  placeholder="Confirm Password"
-                />
-                <div id="errorTxt" class="error"></div> -->
+                <!-- Names -->
+                <div id="name-label">
+                  <input
+                    type="text"
+                    name="names"
+                    id="names"
+                    placeholder="Names"
+                  />
+                  <div id="errorTxt" class="error"></div>
+                </div>
+                <!-- UserName -->
+                <div id="username-label">
+                  <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    placeholder="Username"
+                  />
+                  <div id="errorTxt" class="error"></div>
+                </div>
+                <!-- Email -->
+                <div id="email-label">
+                  <input name="email" id="email" placeholder="Your Email" />
+                  <div id="errorTxt" class="error"></div>
+                </div>
+                <!-- Password -->
+                <div id="password-label">
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Password"
+                  />
+                  <div id="errorTxt" class="error"></div>
+                </div>
+                <!-- Submit -->
                 <button id="submit" type="submit">Sign Up</button>
               </div>
             </div>
@@ -87,13 +95,8 @@
           <p>Already have an account? <a href="./login.html">Login</a></p>
         </div>
       </div>
-
-      <a id="source-link" class="meta-link" href="" target="_blank">
-        <i class="fa-solid fa-link"></i>
-        <span>Resume</span>
-      </a>
     </main>
 
-    <script src="./js/main.js"></script>
+    <script src="./js/auth.js" type="module"></script>
   </body>
 </html>
