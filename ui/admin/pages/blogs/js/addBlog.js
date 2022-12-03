@@ -23,6 +23,36 @@ function showPreview(event) {
   }
 }
 
+// Get a reference to the image element
+var elephant = document.getElementById("canvas");
+
+// Take action when the image has loaded
+elephant.addEventListener(
+  "load",
+  function () {
+    var imgCanvas = document.createElement("canvas"),
+      imgContext = imgCanvas.getContext("2d");
+
+    // Make sure canvas is as big as the picture
+    imgCanvas.width = elephant.width;
+    imgCanvas.height = elephant.height;
+
+    // Draw image into canvas element
+    imgContext.drawImage(elephant, 0, 0, elephant.width, elephant.height);
+
+    // Get canvas contents as a data URL
+    var imgAsDataURL = imgCanvas.toDataURL("image/png");
+
+    // Save image into localStorage
+    try {
+      localStorage.setItem("elephant", imgAsDataURL);
+    } catch (e) {
+      console.log("Storage failed: " + e);
+    }
+  },
+  false
+);
+
 // on submit event
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -43,29 +73,34 @@ form.addEventListener("submit", (e) => {
     };
     // storing the data
     const acceptData = () => {
-      data.id = Date.now();
-      data.cover = URL.createObjectURL(image.files[0]);
-      data.title = title.value;
-      data.caption = caption.value;
-      data.author = author.value;
-      data.article = article.value;
+      try {
+        data.id = Date.now();
+        data.cover = URL.createObjectURL(image.files[0]);
+        data.title = title.value;
+        data.caption = caption.value;
+        data.author = author.value;
+        data.article = article.value;
 
-      // getting today's date
-      // let today = new Date();
-      // let dd = String(today.getDate()).padStart(2, "0");
-      // let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-      // let yyyy = today.getFullYear();
-      // let hr = today.getHours();
-      // let min = today.getMinutes();
+        // getting today's date
+        // let today = new Date();
+        // let dd = String(today.getDate()).padStart(2, "0");
+        // let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+        // let yyyy = today.getFullYear();
+        // let hr = today.getHours();
+        // let min = today.getMinutes();
 
-      // today = dd + "/" + mm + "/" + yyyy + " - " + hr + ":" + min;
-      let today = Date.now();
-      today = new Date(today).toDateString();
-      data.posted = today;
-      data.reads = 0;
-      data.comments = 0;
+        // today = dd + "/" + mm + "/" + yyyy + " - " + hr + ":" + min;
+        let today = Date.now();
+        today = new Date(today).toDateString();
+        data.posted = today;
+        data.reads = 0;
+        data.comments = 0;
 
-      return data;
+        return data;
+      } catch (error) {
+        console.log("Error while storing data in local storage:");
+        console.log(error);
+      }
     };
     blogArray.push(acceptData());
     window.localStorage.setItem("blog", JSON.stringify(blogArray));

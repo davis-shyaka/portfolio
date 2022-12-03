@@ -13,3 +13,5 @@ stats.insertAdjacentHTML(
     </div>
     `
 );
+
+export default { count };
