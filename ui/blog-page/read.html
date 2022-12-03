@@ -41,9 +41,9 @@
     </header>
     <div id="article-wrapper">
       <div class="navigation-section">
-        <a href="./index.html" rel="noopener noreferrer">
+        <button onclick="history.back()">
           <img src="./assets/Top.svg" alt="" srcset="" />
-        </a>
+        </button>
       </div>
       <div id="read-article" class="article-section">
         <!-- Inserted / Dynamic Article will render inside here -->
@@ -55,20 +55,20 @@
       <div class="comment-form-title">
         <h1>Comments</h1>
       </div>
+      <form id="comment-input-form">
+        <div class="form-group">
+          <textarea
+            class="form-control status-box"
+            rows="3"
+            name="commentArea"
+            id="comment-area"
+            placeholder="Place your comment; or not..."
+          ></textarea>
+        </div>
+        <button id="post-button" type="submit">POST</button>
+      </form>
       <div class="container">
         <div id="old-comments"></div>
-        <form id="comment-input-form">
-          <div class="form-group">
-            <textarea
-              class="form-control status-box"
-              rows="3"
-              name="commentArea"
-              id="comment-area"
-              placeholder="Place your comment; or not..."
-            ></textarea>
-          </div>
-          <button id="post-button" type="submit">POST</button>
-        </form>
       </div>
     </div>
     <script src="./js/read.js"></script>

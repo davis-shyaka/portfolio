@@ -42,7 +42,7 @@
 
     <main>
       <div class="contact container">
-        <form>
+        <form id="form">
           <div class="form">
             <div class="form-txt">
               <h1>Get in touch</h1>
@@ -60,36 +60,31 @@
               </div>
             </div>
             <div class="form-details">
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Name"
-                required
-              />
+              <input type="text" name="name" id="name" placeholder="Name" />
+              <div id="errorTxt"></div>
               <input
                 type="email"
                 name="email"
                 id="email"
                 placeholder="Your Email"
-                required
               />
+              <div id="errorTxt"></div>
               <input
                 type="text"
                 name="subject"
                 id="subject"
                 placeholder="Subject"
-                required
               />
+              <div id="errorTxt"></div>
               <textarea
-                name="message"
-                id="message"
+                name="mail"
+                id="mail"
                 cols="52"
                 rows="7"
                 placeholder="Message"
-                required
               ></textarea>
-              <button>SEND MESSAGE</button>
+              <div id="errorTxt"></div>
+              <button type="submit">SEND MESSAGE</button>
             </div>
           </div>
         </form>

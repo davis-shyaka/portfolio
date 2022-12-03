@@ -179,6 +179,11 @@ article {
   overflow: hidden;
 }
 
+#article-wrapper > .navigation-section button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
 #article-wrapper > .navigation-section img {
   width: 150%;
   height: 150%;
@@ -265,7 +270,7 @@ article {
   align-items: center;
   width: 50vw;
   height: 80vh;
-  background-color: var(--primary);
+  background-image: var(--bg-gradient);
   border-radius: 20px;
   /* padding: 0.5%; */
   overflow: hidden;
@@ -285,7 +290,7 @@ article {
   /* border: 0.5px solid var(--secondary); */
   border-radius: inherit;
   padding: 2%;
-  position: relative;
+  /* position: relative; */
 }
 #comment-form > .container form {
   margin-bottom: 20px;
@@ -293,7 +298,7 @@ article {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: fixed;
+  /* position: fixed; */
 }
 
 textarea {
@@ -326,6 +331,13 @@ a {
   padding-left: 0;
   width: 100%;
   text-align: left;
+  margin-bottom: 20px;
+  min-height: 30px;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--primary);
+  padding: 20px;
+  border-radius: 10px;
 }
 
 #oldcomments {
@@ -334,8 +346,9 @@ a {
   justify-content: center;
   align-items: center;
   overflow: scroll;
+  gap: 5%;
 }
-#old-comments li {
+#old-comments {
   background-color: var(--bg-dark);
   /* border: 0.5px solid var(--tertiary); */
   font-size: 0.85rem;
@@ -343,11 +356,8 @@ a {
   color: var(--white);
   border-radius: 10px;
   font-weight: 300;
-  padding-top: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
+  padding: 20px;
+  /* margin-bottom: 30px; */
   word-wrap: break-word;
   min-height: 30px;
   /* box-shadow: 8px 8px 5px #888888; */
@@ -408,7 +418,7 @@ a {
     gap: 1%;
     background-color: var(--bg-dark);
     border-top-left-radius: 20px;
-    height: 200px;
+    /* height: 200px; */
   }
 
   #article-wrapper

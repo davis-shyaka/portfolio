@@ -7,6 +7,7 @@ const article = document.getElementById("article");
 const errorTxt = document.querySelectorAll("#errorTxt");
 const articles = document.getElementById("articles");
 const preview = document.getElementById("file-ip-1-preview");
+
 let blogArray = [];
 let oldBlog = JSON.parse(window.localStorage.getItem("blog")) ?? [];
 if (oldBlog.length > 0) {
@@ -15,44 +16,27 @@ if (oldBlog.length > 0) {
   });
 }
 // previewing the cover image within the form
-function showPreview(event) {
+async function showPreview(event) {
   if (event.target.files.length > 0) {
-    let src = URL.createObjectURL(event.target.files[0]);
-    preview.src = src;
+    // let src = URL.createObjectURL(event.target.files[0]);
+    preview.src = await readImage(event.target.files[0]);
+    // preview.src = src;
     preview.style.display = "block";
   }
 }
 
-// Get a reference to the image element
-var elephant = document.getElementById("canvas");
+// read image function
 
-// Take action when the image has loaded
-elephant.addEventListener(
-  "load",
-  function () {
-    var imgCanvas = document.createElement("canvas"),
-      imgContext = imgCanvas.getContext("2d");
-
-    // Make sure canvas is as big as the picture
-    imgCanvas.width = elephant.width;
-    imgCanvas.height = elephant.height;
-
-    // Draw image into canvas element
-    imgContext.drawImage(elephant, 0, 0, elephant.width, elephant.height);
-
-    // Get canvas contents as a data URL
-    var imgAsDataURL = imgCanvas.toDataURL("image/png");
-
-    // Save image into localStorage
-    try {
-      localStorage.setItem("elephant", imgAsDataURL);
-    } catch (e) {
-      console.log("Storage failed: " + e);
-    }
-  },
-  false
-);
-
+function readImage(file) {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.addEventListener("load", (e) => {
+      resolve(fileReader.result);
+      // console.log(fileReader);
+    });
+  });
+}
 // on submit event
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -75,7 +59,7 @@ form.addEventListener("submit", (e) => {
     const acceptData = () => {
       try {
         data.id = Date.now();
-        data.cover = URL.createObjectURL(image.files[0]);
+        data.cover = preview.src;
         data.title = title.value;
         data.caption = caption.value;
         data.author = author.value;

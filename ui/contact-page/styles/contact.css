@@ -156,7 +156,7 @@ a {
   background-color: var(--primary);
   border-radius: 30px;
   padding: 20px;
-  overflow: hidden;
+  overflow: auto;
   border: 1px solid #00ffff;
 }
 

@@ -10,6 +10,12 @@
       src="https://kit.fontawesome.com/92d2814568.js"
       crossorigin="anonymous"
     ></script>
+    <script>
+      const user = JSON.parse(localStorage.getItem("authenticatedUser"));
+      if (user) {
+        history.back();
+      }
+    </script>
     <title>Davis</title>
   </head>
   <body>
@@ -53,26 +59,28 @@
           <div class="striped-text">Or</div>
           <div class="striped-line"></div>
         </div>
+        <div class="error"></div>
         <div class="other-login">
-          <form>
+          <form id="form">
             <div class="form">
               <div class="form-details">
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Your Email"
-                  required
-                />
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="Password"
-                  required
-                />
+                <!-- Email -->
+                <div id="email-label">
+                  <input name="email" id="email" placeholder="Your Email" />
+                  <div id="errorTxt" class="error"></div>
+                </div>
+                <!-- Password -->
+                <div id="password-label">
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Password"
+                  />
+                  <div id="errorTxt" class="error"></div>
+                </div>
                 <button>
-                  <a href="../admin/index.html">Log In</a>
+                  <a type="submit">Log In</a>
                 </button>
               </div>
             </div>

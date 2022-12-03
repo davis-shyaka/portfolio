@@ -18,8 +18,9 @@ let usersArray = JSON.parse(localStorage.getItem("users")) ?? [];
 const createUser = (user) => {
   usersArray.push(user);
   localStorage.setItem("users", JSON.stringify(usersArray));
-  console.log(usersArray);
-  location.reload();
+  localStorage.setItem("isAuthenticated", "true");
+  // console.log(usersArray);
+  // location.reload();
 };
 
 const form = document.getElementById("form");
@@ -37,6 +38,11 @@ form.addEventListener("submit", (e) => {
   console.log(user);
   if (validateInputs()) {
     createUser(user);
+    names.value = "";
+    username.value = "";
+    email.value = "";
+    password.value = "";
+    location.href = "../../../index.html";
   } else {
     console.log("Error while saving user");
   }
