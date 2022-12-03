@@ -27,13 +27,7 @@ html {
   --bg-gradient: linear-gradient(180deg, #020917 0%, #1e3a8a 100%);
   --bg-color: rgb(20, 20, 20);
   --card-color: rgb(23, 23, 23);
-
-  /* For the Contact Form */
-  --primary-color: #ff3c78;
-  --light-black: rgba(0, 0, 0, 0.89);
-  /* --black: #000; */
-  /* --white: #fff; */
-  --grey: #aaa;
+  --danger: #ff3c78;
 }
 
 body {
@@ -243,9 +237,23 @@ input:focus {
   background-color: transparent;
 }
 
-.form .form-details .active {
-  margin-bottom: 10px;
-  color: red;
+.form .form-details .error {
+  margin-bottom: 5px;
+  color: var(--danger);
+  text-align: right;
+  font-size: 0.95em;
+}
+.form .form-details .success {
+  margin-bottom: 5px;
+  color: var(--secondary);
+  text-align: right;
+}
+.form .form-details .error input {
+  border: 1px solid var(--danger);
+}
+
+.form .form-details .success input {
+  border: 1px solid var(--secondary);
 }
 
 small {
