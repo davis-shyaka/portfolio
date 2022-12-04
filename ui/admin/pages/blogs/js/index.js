@@ -13,8 +13,11 @@ blogData.forEach((item) => {
         <td data-label="Reads">${item.reads}</td>
         <td data-label="Action">
           <div class="actions">
-              <i id="edit" onClick="editPost(this)" class="fa-solid fa-pen-to-square"></i>
+          <a href="./editblog.html#${item.id}" rel="noopener noreferrer">
+          <i id="edit" class="fa-solid fa-pen-to-square"></i>
+          </a>
               <i id="delete" data-id = ${item.id} class="fa-solid fa-trash delete-blog"></i>
+              
           </div>
         </td>
       </tr>
@@ -41,3 +44,5 @@ function deletePost(deleteID) {
     location.reload();
   }
 }
+
+// Confirm Modal

@@ -5,7 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  color: var(--secondary);
+  /* color: var(--secondary); */
   line-height: 1.25;
 }
 :root {
@@ -15,7 +15,7 @@
   --secondary: #a8eb12;
   --tertiary: #00ffff;
   --complementive: #f9f871;
-  --danger: #ff00ff;
+  --danger: #ff3c78;
   --bg-dark: #020917;
   --bg-gradient: linear-gradient(180deg, #020917 0%, #1e3a8a 100%);
 }
@@ -77,8 +77,8 @@
   flex-direction: column;
   overflow: hidden;
 }
-.form .form-details input {
-  /* width: auto; */
+input {
+  width: 100%;
   padding: 15px 20px;
   background-color: var(--primary);
   border-radius: 10px;
@@ -94,7 +94,8 @@ input:focus {
   background-color: transparent;
 }
 
-.form .form-details textarea {
+textarea {
+  width: 100%;
   padding: 15px 20px;
   color: var(--black);
   outline: none;
@@ -124,8 +125,10 @@ input:focus {
   cursor: pointer;
 }
 
-.form .form-details .invalid {
+.invalid {
   margin-bottom: 5px;
+}
+.invalid span {
   color: var(--danger) !important;
   /* text-align: right; */
   font-size: 0.8em;
