@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href=".././../styles/style.css" />
     <link rel="stylesheet" href="../../styles/table-styles/blog.css" />
-    <link rel="stylesheet" href="../../styles/addBlog.css" />
+    <link rel="stylesheet" href="editBlog.css" />
     <!-- Font Awesome Icons -->
     <script
       src="https://kit.fontawesome.com/92d2814568.js"
@@ -91,7 +91,7 @@
                         multiple
                         onchange="showPreview(event)"
                       />
-                      <div id="errorTxt"></div>
+                      <span id="errorTxt" class="error"></span>
                     </div>
                     <div class="preview">
                       <img id="file-ip-1-preview" />
@@ -99,35 +99,44 @@
                     <!-- <img id="canvas" src="../../assets/avatar.jpg" /> -->
                   </div>
                   <div class="form-details">
-                    <input
-                      type="text"
-                      name="title"
-                      id="title"
-                      placeholder="Title"
-                    />
-                    <div id="errorTxt"></div>
-                    <input
-                      type="text"
-                      name="caption"
-                      id="caption"
-                      placeholder="Caption"
-                    />
-                    <div id="errorTxt"></div>
-                    <input
-                      type="text"
-                      name="author"
-                      id="author"
-                      placeholder="Author"
-                    />
-                    <div id="errorTxt"></div>
-                    <textarea
-                      name="article"
-                      id="article"
-                      rows="10"
-                      placeholder="Article"
-                    ></textarea>
-                    <div id="errorTxt"></div>
-                    <button type="submit">POST</button>
+                    <div class="title-input">
+                      <input
+                        type="text"
+                        name="title"
+                        id="title"
+                        placeholder="Title"
+                      />
+                      <span id="errorTxt" class="error"></span>
+                    </div>
+                    <div class="caption-input">
+                      <input
+                        type="text"
+                        name="caption"
+                        id="caption"
+                        placeholder="Caption"
+                      />
+                      <span id="errorTxt" class="error"></span>
+                    </div>
+                    <div class="author-input">
+                      <input
+                        type="text"
+                        name="author"
+                        id="author"
+                        placeholder="Author"
+                      />
+                      <span id="errorTxt" class="error"></span>
+                    </div>
+                    <div class="article-input">
+                      <textarea
+                        name="article"
+                        id="article"
+                        rows="10"
+                        placeholder="Article"
+                      ></textarea>
+                      <span id="errorTxt" class="error"></span>
+                    </div>
+
+                    <button type="submit">UPDATE</button>
                   </div>
                 </div>
               </form>
@@ -136,6 +145,6 @@
         </div>
       </div>
     </section>
-    <script src="./js/addBlog.js"></script>
+    <script src="./js/editBlog.js"></script>
   </body>
 </html>

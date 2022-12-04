@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles/auth.css" />
+    <!-- Font Awesome Icons -->
+    <script
+      src="https://kit.fontawesome.com/92d2814568.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Davis</title>
   </head>
   <body>
@@ -27,7 +32,9 @@
             <a href="../contact-page/index.html"><span>contact</span></a>
           </li>
           <li>
-            <a href="../auth-page/index.html"><span>account</span></a>
+            <a href="../auth-page/index.html">
+              <i class="fa-solid fa-user"></i
+            ></a>
           </li>
         </ul>
       </nav>
@@ -46,26 +53,28 @@
           <div class="striped-text">Or</div>
           <div class="striped-line"></div>
         </div>
+        <div class="error"></div>
         <div class="other-login">
-          <form>
+          <form id="form">
             <div class="form">
               <div class="form-details">
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Your Email"
-                  required
-                />
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="Password"
-                  required
-                />
+                <!-- Email -->
+                <div id="email-label">
+                  <input name="email" id="email" placeholder="Your Email" />
+                  <div id="errorTxt" class="error"></div>
+                </div>
+                <!-- Password -->
+                <div id="password-label">
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Password"
+                  />
+                  <div id="errorTxt" class="error"></div>
+                </div>
                 <button>
-                  <a href="../admin/index.html">Log In</a>
+                  <a type="submit">Log In</a>
                 </button>
               </div>
             </div>

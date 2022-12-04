@@ -1,8 +1,3 @@
-const names = document.querySelector("#names");
-const username = document.querySelector("#username");
-const email = document.querySelector("#email");
-const password = document.querySelector("#password");
-
 let user = {
   id: crypto.randomUUID(),
   names: null,
@@ -14,19 +9,23 @@ let user = {
   signedAt: Date.now(),
 };
 
+// get already registered users from local storage
 let usersArray = JSON.parse(localStorage.getItem("users")) ?? [];
+
+// function to create a user
 const createUser = (user) => {
+  console.log(user);
   usersArray.push(user);
   localStorage.setItem("users", JSON.stringify(usersArray));
-  console.log(usersArray);
-  location.reload();
+  localStorage.setItem("isLoggedIn", JSON.stringify(user));
 };
 
 const form = document.getElementById("form");
+const { names, username, email, password } = form;
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  validateInputs();
+  // store the data from the input field
   user = {
     ...user,
     names: names.value,
@@ -34,95 +33,92 @@ form.addEventListener("submit", (e) => {
     email: email.value,
     password: password.value,
   };
-  console.log(user);
-  if (validateInputs()) {
+  // validate the fields
+  if (validateForm(form)) {
+    // check if the user is not already registered
+    for (let oldUser of usersArray) {
+      if (oldUser.email === email.value) {
+        setInvalid(email, "User with this email already exists. Try another");
+        setInvalid(password, "");
+      }
+      return;
+    }
+    // if all the checks pass, then create the user
     createUser(user);
-  } else {
-    console.log("Error while saving user");
+    // reset the input fields
+    form.names.value = "";
+    form.username.value = "";
+    form.email.value = "";
+    password.value = "";
+    // redirect to the landing page
+    location.href = "/";
   }
 });
 
 // User Validation
+const validateForm = (form) => {
+  let isRequired = true;
 
-const showError = (element, message) => {
-  const inputField = element.parentElement;
-  const errorView = inputField.querySelector(".error");
-  errorView.innerText = message;
-  inputField.classList.add("error");
-  inputField.classList.remove("success");
-};
-const showSuccess = (element) => {
-  const inputField = element.parentElement;
-  const errorView = inputField.querySelector(".error");
-  errorView.innerText = "";
-  inputField.classList.add("success");
-  inputField.classList.remove("error");
-};
-
-const validateInputs = () => {
-  const namesValue = names.value.trim();
-  const userNameValue = username.value.trim();
-  const emailValue = email.value.trim();
-  const passwordValue = password.value.trim();
-
-  // check names field
-  if (namesValue === "") {
-    showError(names, "Name(s) is required");
-    return false;
-  } else if (validateInput(namesValue)) {
-    showError(names, "Please provide a real name(s) between 3-32 characters.");
+  // Check for Required names
+  if (form.names.value.trim() === "") {
+    setInvalid(form.names, "Names are required!");
+    isRequired = false;
   } else {
-    showSuccess(names);
-    return true;
+    setSuccess(form.names);
   }
 
-  // check username field
-  if (userNameValue === "") {
-    showError(names, "Username is required");
-  } else if (validateInput(userNameValue)) {
-    showError(username, "Please provide a valid user name.");
+  // Check for Required username
+  if (form.username.value.trim() === "") {
+    setInvalid(form.username, "Username is required!");
+    isRequired = false;
   } else {
-    showSuccess(username);
+    setSuccess(form.username);
   }
 
-  // check email field
-  if (emailValue === "") {
-    showError(email, "Email is required");
-  } else if (validateInput(emailValue)) {
-    showError(email, "Please provide a valid email address.");
+  // Check for Required Email
+  if (form.email.value.trim() === "") {
+    setInvalid(form.email, "Email is required!");
+    isRequired = false;
+  } else if (!validEmail(form.email.value.trim())) {
+    setInvalid(form.email, "Email is not valid!");
+    isRequired = false;
   } else {
-    showSuccess(email);
+    setSuccess(form.email);
   }
 
-  // check password field
-  if (passwordValue === "") {
-    showError(password, "Password is required");
-  } else if (validateInput(password)) {
-    showError(
-      password,
-      "Passowrd must be at least 8 charachters, contain a number and a special character"
-    );
+  // Check for Required Password
+  if (form.password.value.trim() === "") {
+    setInvalid(form.password, "Password is Required!");
+    isRequired = false;
+  } else if (form.password.value.length < 9) {
+    setInvalid(form.password, "Password must be at least 9 characters!");
+    isRequired = false;
   } else {
-    showSuccess(password);
+    setSuccess(form.password);
   }
+
+  return isRequired;
 };
 
-// strict validation of input fields
-function validateInput(type) {
-  // the names
-  if (type === "names") return type.match(/^[a-z][a-z '-.,]{2,31}$|^$/i);
+// Set for Success Input Value
+const setSuccess = (input) => {
+  const formControl = input.parentElement;
+  formControl.className = "form-control success";
+  const formAlert = formControl.querySelector(".error");
+  formAlert.innerHTML = "";
+};
 
-  // the username
-  if (type === "username") return type.match(/^[a-z0-9_.]+$/);
+// Set for Invalid Input Value
+const setInvalid = (input, message) => {
+  const formControl = input.parentElement;
+  const formAlert = formControl.querySelector(".error");
+  formControl.className = "form-control invalid";
+  formAlert.innerHTML = message;
+};
 
-  // the email
-  if (type === "email") {
-    return type.match(
-      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    );
-  }
-
-  // the password
-  if (type === "password")
-    return type.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm);
-}
+// Set for Valid Email Value
+const validEmail = (email) => {
+  const re =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email.toLowerCase());
+};

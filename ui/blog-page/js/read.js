@@ -57,7 +57,10 @@ ourBlog.comments.forEach((comment) => {
   commentsDOM.insertAdjacentHTML(
     "afterbegin",
     `
-      <li id="singleComment">${comment}</li>
+    <div id="singleComment">
+    ${comment}
+    <i class="fa-regular fa-heart"></i>
+    </div>
       
       `
   );

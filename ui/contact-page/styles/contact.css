@@ -96,6 +96,11 @@ ol {
   font-weight: 300;
 }
 
+#globalNav .menu li a i {
+  font-size: 1.5em;
+  transform: rotate(-90deg);
+}
+
 #globalNav .menu li a:hover {
   color: var(--secondary);
 }
@@ -151,7 +156,7 @@ a {
   background-color: var(--primary);
   border-radius: 30px;
   padding: 20px;
-  overflow: hidden;
+  overflow: auto;
   border: 1px solid #00ffff;
 }
 

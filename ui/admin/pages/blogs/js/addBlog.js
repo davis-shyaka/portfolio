@@ -7,6 +7,7 @@ const article = document.getElementById("article");
 const errorTxt = document.querySelectorAll("#errorTxt");
 const articles = document.getElementById("articles");
 const preview = document.getElementById("file-ip-1-preview");
+
 let blogArray = [];
 let oldBlog = JSON.parse(window.localStorage.getItem("blog")) ?? [];
 if (oldBlog.length > 0) {
@@ -15,14 +16,27 @@ if (oldBlog.length > 0) {
   });
 }
 // previewing the cover image within the form
-function showPreview(event) {
+async function showPreview(event) {
   if (event.target.files.length > 0) {
-    let src = URL.createObjectURL(event.target.files[0]);
-    preview.src = src;
+    // let src = URL.createObjectURL(event.target.files[0]);
+    preview.src = await readImage(event.target.files[0]);
+    // preview.src = src;
     preview.style.display = "block";
   }
 }
 
+// read image function
+
+function readImage(file) {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.addEventListener("load", (e) => {
+      resolve(fileReader.result);
+      // console.log(fileReader);
+    });
+  });
+}
 // on submit event
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -43,29 +57,34 @@ form.addEventListener("submit", (e) => {
     };
     // storing the data
     const acceptData = () => {
-      data.id = Date.now();
-      data.cover = URL.createObjectURL(image.files[0]);
-      data.title = title.value;
-      data.caption = caption.value;
-      data.author = author.value;
-      data.article = article.value;
+      try {
+        data.id = Date.now();
+        data.cover = preview.src;
+        data.title = title.value;
+        data.caption = caption.value;
+        data.author = author.value;
+        data.article = article.value;
 
-      // getting today's date
-      // let today = new Date();
-      // let dd = String(today.getDate()).padStart(2, "0");
-      // let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-      // let yyyy = today.getFullYear();
-      // let hr = today.getHours();
-      // let min = today.getMinutes();
+        // getting today's date
+        // let today = new Date();
+        // let dd = String(today.getDate()).padStart(2, "0");
+        // let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+        // let yyyy = today.getFullYear();
+        // let hr = today.getHours();
+        // let min = today.getMinutes();
 
-      // today = dd + "/" + mm + "/" + yyyy + " - " + hr + ":" + min;
-      let today = Date.now();
-      today = new Date(today).toDateString();
-      data.posted = today;
-      data.reads = 0;
-      data.comments = 0;
+        // today = dd + "/" + mm + "/" + yyyy + " - " + hr + ":" + min;
+        let today = Date.now();
+        today = new Date(today).toDateString();
+        data.posted = today;
+        data.reads = 0;
+        data.comments = 0;
 
-      return data;
+        return data;
+      } catch (error) {
+        console.log("Error while storing data in local storage:");
+        console.log(error);
+      }
     };
     blogArray.push(acceptData());
     window.localStorage.setItem("blog", JSON.stringify(blogArray));

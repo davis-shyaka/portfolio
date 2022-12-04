@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles/contact.css" />
+    <!-- Font Awesome Icons -->
+    <script
+      src="https://kit.fontawesome.com/92d2814568.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Davis</title>
   </head>
   <body>
@@ -27,7 +32,9 @@
             <a href="../contact-page/index.html"><span>contact</span></a>
           </li>
           <li>
-            <a href="../auth-page/index.html"><span>account</span></a>
+            <a href="../auth-page/index.html">
+              <i id="account" class="fa-solid fa-user"></i
+            ></a>
           </li>
         </ul>
       </nav>
@@ -35,7 +42,7 @@
 
     <main>
       <div class="contact container">
-        <form>
+        <form id="form">
           <div class="form">
             <div class="form-txt">
               <h1>Get in touch</h1>
@@ -53,61 +60,38 @@
               </div>
             </div>
             <div class="form-details">
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Name"
-                required
-              />
+              <input type="text" name="name" id="name" placeholder="Name" />
+              <div id="errorTxt"></div>
               <input
                 type="email"
                 name="email"
                 id="email"
                 placeholder="Your Email"
-                required
               />
+              <div id="errorTxt"></div>
               <input
                 type="text"
                 name="subject"
                 id="subject"
                 placeholder="Subject"
-                required
               />
+              <div id="errorTxt"></div>
               <textarea
-                name="message"
-                id="message"
+                name="mail"
+                id="mail"
                 cols="52"
                 rows="7"
                 placeholder="Message"
-                required
               ></textarea>
-              <button>SEND MESSAGE</button>
+              <div id="errorTxt"></div>
+              <button type="submit">SEND MESSAGE</button>
             </div>
           </div>
         </form>
       </div>
-
-      <!-- <div id="gallery">
-        <div class="tile">
-          <img src="" />
-          <div class="description">
-            <p>Hi, I'm <span id="myName">Davis</span></p>
-            <p>
-              I like to design and build
-              <span id="myProducts">software</span> that enriches the
-              <span id="myPassion">creative</span> spirit.
-            </p>
-          </div>
-        </div>
-      </div> -->
-
-      <a id="source-link" class="meta-link" href="" target="_blank">
-        <i class="fa-solid fa-link"></i>
-        <span>Resume</span>
-      </a>
     </main>
 
+    <script src="../../main.js" type="module"></script>
     <script src="./js/main.js"></script>
   </body>
 </html>
