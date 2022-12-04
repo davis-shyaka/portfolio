@@ -15,7 +15,7 @@
   --secondary: #a8eb12;
   --tertiary: #00ffff;
   --complementive: #f9f871;
-  --danger: #ff00ff;
+  --danger: #ff3c78;
   --bg-dark: #020917;
   --bg-gradient: linear-gradient(180deg, #020917 0%, #1e3a8a 100%);
 }
@@ -173,3 +173,82 @@ table .actions {
 }
 
 /* Confirm Modal */
+.del-blog {
+  margin: 1rem;
+}
+.global-container {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.pop {
+  display: flex;
+}
+.unpop {
+  display: none;
+  animation-name: close;
+  animation-duration: 0.3s;
+}
+@keyframes grow {
+  0% {
+    transform: scale(0.5, 0.5);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+.window {
+  text-align: center;
+  animation-name: grow;
+  animation-duration: 0.3s;
+}
+.head-msg {
+  background-color: var(--primary);
+  width: 100%;
+  padding: 1rem;
+  font-weight: bolder;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.main-msg {
+  background-color: var(--bg-dark);
+  width: 100%;
+  padding: 0.1rem 1rem;
+  text-align: start;
+  font-weight: 200;
+}
+.confirm {
+  background-color: var(--primary);
+  width: 100%;
+  padding: 0.5rem;
+  /* text-align: justify; */
+  display: flex;
+  justify-content: space-around;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-weight: bold;
+}
+
+.delete-button {
+  background-color: var(--danger);
+  color: var(--bg-dark);
+  border: none;
+  border-radius: 3px;
+  padding: 10px;
+  cursor: pointer;
+}
+.cancel-button {
+  background-color: var(--secondary);
+  color: var(--bg-dark);
+  border: none;
+  border-radius: 3px;
+  padding: 10px;
+  cursor: pointer;
+}
