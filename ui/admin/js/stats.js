@@ -6,7 +6,7 @@ stats.insertAdjacentHTML(
   `
     <div class="card">
         <div class="card-title">
-            <i class="fa-solid fa-eye"></i>
+            <i class="fa-solid fa-newspaper"></i>
             <div class="card-topic">Articles</div>
         </div>
         <div class="number">${count}</div>
