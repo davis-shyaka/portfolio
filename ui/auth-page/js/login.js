@@ -1,4 +1,5 @@
 const currentUser = {
+  names: "",
   email: "",
   password: "",
 };
@@ -18,7 +19,10 @@ form.addEventListener("submit", (e) => {
   if (validateForm(form)) {
     // then check if the user exists in our local storage
     if (checkUser(currentUser)) {
-      localStorage.setItem("isLoggedIn", JSON.stringify(currentUser));
+      localStorage.setItem(
+        "isLoggedIn",
+        JSON.stringify(checkUser(currentUser))
+      );
       if (checkUser(currentUser).isAdmin) {
         email.value = "";
         password.value = "";

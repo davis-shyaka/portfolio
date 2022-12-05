@@ -57,13 +57,16 @@
       </div>
       <form id="comment-input-form">
         <div class="form-group">
-          <textarea
-            class="form-control status-box"
-            rows="3"
-            name="commentArea"
-            id="comment-area"
-            placeholder="Place your comment; or not..."
-          ></textarea>
+          <div class="comment-label">
+            <textarea
+              class="form-control status-box"
+              rows="3"
+              name="commentArea"
+              id="comment-area"
+              placeholder="Place your comment; or not..."
+            ></textarea>
+            <div id="errorTxt" class="error"></div>
+          </div>
         </div>
         <button id="post-button" type="submit">POST</button>
       </form>

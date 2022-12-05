@@ -50,24 +50,30 @@ commentForm.addEventListener("submit", (e) => {
   e.preventDefault();
   //   console.log("clicked button");
   //   console.log(comment.value);
-  if (user) {
-    if (ourBlog.comments) {
-      let currentComment = {
-        commenter: user.names,
-        comment: comment.value,
-        datePosted: today,
-      };
-      ourBlog.comments.push(currentComment);
+  if (validateForm(commentForm)) {
+    if (user) {
+      if (ourBlog.comments) {
+        let currentComment = {
+          blogID: ourBlog.id,
+          commentID: crypto.randomUUID(),
+          commenter: user.names,
+          comment: comment.value,
+          datePosted: today,
+          email: user.email,
+          article: ourBlog.title,
+        };
+        ourBlog.comments.push(currentComment);
+      } else {
+        ourBlog.comments = [comment.value];
+      }
+      localStorage.setItem("blog", JSON.stringify(blogData));
+      //   console.log(blogData);
+      comment.value = "";
+      location.reload();
     } else {
-      ourBlog.comments = [comment.value];
+      comment.value = "";
+      location.href = "/ui/auth-page/login.html";
     }
-    localStorage.setItem("blog", JSON.stringify(blogData));
-    //   console.log(blogData);
-    comment.value = "";
-    location.reload();
-  } else {
-    comment.value = "";
-    location.href = "/ui/auth-page/login.html";
   }
 });
 
@@ -77,10 +83,39 @@ ourBlog.comments.forEach((comment) => {
     `
       <div id="singleComment">
       ${comment.comment}
-      <div><p id="">${comment.commenter}</p></div>
+      <div><p id="comment-date">By:</p> ${comment.commenter}</div>
       <div><p id="comment-date">${comment.datePosted}</p></div>
       </div>
         
         `
   );
 });
+
+const validateForm = (form) => {
+  let isRequired = true;
+
+  // Check for Required comment
+  if (form.commentArea.value.trim() === "") {
+    setInvalid(form.commentArea, "Comment cannot be empty!");
+    isRequired = false;
+  } else {
+    setSuccess(form.commentArea);
+  }
+  return isRequired;
+};
+
+// Set for Success Input Value
+const setSuccess = (input) => {
+  const formControl = input.parentElement;
+  formControl.className = "form-control success";
+  const formAlert = formControl.querySelector(".error");
+  formAlert.innerHTML = "";
+};
+
+// Set for Invalid Input Value
+const setInvalid = (input, message) => {
+  const formControl = input.parentElement;
+  const formAlert = formControl.querySelector(".error");
+  formControl.className = "form-control invalid";
+  formAlert.innerHTML = message;
+};
