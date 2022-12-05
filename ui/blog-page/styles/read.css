@@ -27,6 +27,7 @@ html {
   --bg-gradient: linear-gradient(180deg, #020917 0%, #1e3a8a 100%);
   --bg-color: rgb(20, 20, 20);
   --card-color: rgb(23, 23, 23);
+  --danger: #ff3c78;
 }
 
 body {
@@ -277,7 +278,7 @@ article {
 }
 
 #likes {
-  color: red !important;
+  color: var(--danger) !important;
   font-size: 1.5em !important;
 }
 
@@ -407,6 +408,27 @@ a {
   font-size: 0.85em;
   color: gray;
   align-self: flex-end;
+}
+
+#comment-input-form .form-group .invalid {
+  margin-bottom: 5px;
+  color: var(--danger) !important;
+  text-align: right;
+  font-size: 0.95em;
+}
+
+#comment-input-form .form-group .invalid {
+  margin-top: 5px;
+  color: var(--danger) !important;
+  text-align: right;
+}
+
+#comment-input-form .form-group .invalid textarea {
+  border: 1px solid var(--danger) !important;
+}
+
+#comment-input-form .form-group .success textarea {
+  border: 1px solid var(--secondary) !important;
 }
 
 /* -- ↓ ↓ ↓ some responsiveness ↓ ↓ ↓ -- */
