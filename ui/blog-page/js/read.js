@@ -6,7 +6,8 @@ const ourBlog = blogData.find(({ id }) => {
 });
 // console.log(ourBlog);
 const articleDOM = document.querySelector("#read-article");
-const { cover, id, title, caption, author, posted, reads, article } = ourBlog;
+const { cover, id, title, caption, author, posted, reads, likes, article } =
+  ourBlog;
 articleDOM.insertAdjacentHTML(
   "afterbegin",
   `
@@ -20,7 +21,11 @@ articleDOM.insertAdjacentHTML(
               <h4>${caption}</h4>
             </div>
             <div class="article-stats">
-              <img src="../../blog-page/assets/Vector.svg" alt="" srcset="" />
+            <button>
+            <i id="likes" class="fa-solid fa-heart"></i>
+            </button>
+            <p>${likes}</p>
+            <i class="fa-regular fa-eye"></i>
               <p>${reads}</p>
               <p>${posted}</p>
             </div>
@@ -38,30 +43,44 @@ articleDOM.insertAdjacentHTML(
 const commentForm = document.getElementById("comment-input-form");
 const comment = document.getElementById("comment-area");
 const commentsDOM = document.getElementById("old-comments");
+const user = JSON.parse(localStorage.getItem("isLoggedIn"));
+let today = Date.now();
+today = new Date(today).toDateString();
 commentForm.addEventListener("submit", (e) => {
   e.preventDefault();
   //   console.log("clicked button");
   //   console.log(comment.value);
-  if (ourBlog.comments) {
-    ourBlog.comments.push(comment.value);
+  if (user) {
+    if (ourBlog.comments) {
+      let currentComment = {
+        commenter: user.names,
+        comment: comment.value,
+        datePosted: today,
+      };
+      ourBlog.comments.push(currentComment);
+    } else {
+      ourBlog.comments = [comment.value];
+    }
+    localStorage.setItem("blog", JSON.stringify(blogData));
+    //   console.log(blogData);
+    comment.value = "";
+    location.reload();
   } else {
-    ourBlog.comments = [comment.value];
+    comment.value = "";
+    location.href = "/ui/auth-page/login.html";
   }
-  localStorage.setItem("blog", JSON.stringify(blogData));
-  //   console.log(blogData);
-  comment.value = "";
-  location.reload();
 });
 
 ourBlog.comments.forEach((comment) => {
   commentsDOM.insertAdjacentHTML(
     "afterbegin",
     `
-    <div id="singleComment">
-    ${comment}
-    <i class="fa-regular fa-heart"></i>
-    </div>
-      
-      `
+      <div id="singleComment">
+      ${comment.comment}
+      <div><p id="">${comment.commenter}</p></div>
+      <div><p id="comment-date">${comment.datePosted}</p></div>
+      </div>
+        
+        `
   );
 });
