@@ -14,7 +14,7 @@ let usersArray = JSON.parse(localStorage.getItem("users")) ?? [];
 
 // function to create a user
 const createUser = (user) => {
-  console.log(user);
+  // console.log(user);
   usersArray.push(user);
   localStorage.setItem("users", JSON.stringify(usersArray));
   localStorage.setItem("isLoggedIn", JSON.stringify(user));
@@ -33,16 +33,19 @@ form.addEventListener("submit", (e) => {
     email: email.value,
     password: password.value,
   };
+  // console.log(user);
   // validate the fields
   if (validateForm(form)) {
+    console.log("first: form is validated");
     // check if the user is not already registered
     for (let oldUser of usersArray) {
       if (oldUser.email === email.value) {
         setInvalid(email, "User with this email already exists. Try another");
         setInvalid(password, "");
+        return;
       }
-      return;
     }
+
     // if all the checks pass, then create the user
     createUser(user);
     // reset the input fields
@@ -52,6 +55,8 @@ form.addEventListener("submit", (e) => {
     password.value = "";
     // redirect to the landing page
     location.href = "/";
+  } else {
+    console.log("error creating user");
   }
 });
 

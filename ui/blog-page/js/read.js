@@ -21,10 +21,6 @@ articleDOM.insertAdjacentHTML(
               <h4>${caption}</h4>
             </div>
             <div class="article-stats">
-            <button>
-            <i id="likes" class="fa-solid fa-heart"></i>
-            </button>
-            <p>${likes}</p>
             <i class="fa-regular fa-eye"></i>
               <p>${reads}</p>
               <p>${posted}</p>
@@ -38,6 +34,13 @@ articleDOM.insertAdjacentHTML(
           </div>
     `
 );
+
+{
+  /* <button>
+  <i id="likes" class="fa-solid fa-heart"></i>
+</button>
+<p>${likes}</p> */
+}
 
 // Comment Section
 const commentForm = document.getElementById("comment-input-form");

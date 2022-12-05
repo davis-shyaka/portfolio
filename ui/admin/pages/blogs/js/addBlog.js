@@ -96,7 +96,7 @@ form.addEventListener("submit", (e) => {
     image.value = "";
     preview.style.display = "none";
 
-    window.location.replace("../../pages/blogs/index.html");
+    window.location.replace("/ui/admin/pages/blogs/index.html");
   }
 });
 
