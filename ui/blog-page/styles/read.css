@@ -251,9 +251,36 @@ article {
   > .article-stats {
   /* background-color: #a8eb12; */
   display: flex;
+  align-items: center;
   flex-direction: row;
   gap: 2%;
+  padding-top: 10px;
 }
+#article-wrapper
+  > .article-section
+  > .article-body
+  > .article-header
+  > .article-stats
+  i {
+  color: var(--secondary);
+  font-size: 1.2em;
+}
+#article-wrapper
+  > .article-section
+  > .article-body
+  > .article-header
+  > .article-stats
+  button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+#likes {
+  color: red !important;
+  font-size: 1.5em !important;
+}
+
 #article-wrapper > .article-section > .article-body > .article-text {
   background-color: #051937;
   height: 70%;
@@ -374,6 +401,12 @@ a {
 #comment-form > .container > .button-group > .disabled {
   opacity: 0.4;
   pointer-events: none;
+}
+
+#comment-date {
+  font-size: 0.85em;
+  color: gray;
+  align-self: flex-end;
 }
 
 /* -- ↓ ↓ ↓ some responsiveness ↓ ↓ ↓ -- */

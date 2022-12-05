@@ -53,6 +53,7 @@ form.addEventListener("submit", (e) => {
       article: "",
       posted: "",
       reads: "",
+      likes: "",
       comments: [],
     };
     // storing the data
@@ -78,7 +79,7 @@ form.addEventListener("submit", (e) => {
         today = new Date(today).toDateString();
         data.posted = today;
         data.reads = 0;
-        data.comments = 0;
+        data.likes = 0;
 
         return data;
       } catch (error) {
