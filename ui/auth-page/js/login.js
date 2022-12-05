@@ -30,7 +30,7 @@ form.addEventListener("submit", (e) => {
       } else {
         email.value = "";
         password.value = "";
-        location.href = "/index.html";
+        location.href = "/";
       }
     } else {
       setInvalid(form.email, "Unmatching email or password");

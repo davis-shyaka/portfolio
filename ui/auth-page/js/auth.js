@@ -14,7 +14,6 @@ let usersArray = JSON.parse(localStorage.getItem("users")) ?? [];
 
 // function to create a user
 const createUser = (user) => {
-  // console.log(user);
   usersArray.push(user);
   localStorage.setItem("users", JSON.stringify(usersArray));
   localStorage.setItem("isLoggedIn", JSON.stringify(user));
@@ -33,7 +32,6 @@ form.addEventListener("submit", (e) => {
     email: email.value,
     password: password.value,
   };
-  // console.log(user);
   // validate the fields
   if (validateForm(form)) {
     console.log("first: form is validated");

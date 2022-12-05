@@ -1,5 +1,4 @@
 const newURL = new URL(location.href);
-// console.log(newURL);
 let blogData = JSON.parse(window.localStorage.getItem("blog")) ?? [];
 const ourBlog = blogData.find(({ id }) => {
   return id == newURL.hash.replace("#", "");
@@ -45,7 +44,6 @@ form.addEventListener("submit", (e) => {
   if (validateForm(form)) {
     const updatedBlog = blogData.map((blog) => {
       if (blog.id === ourBlog.id) {
-        // console.log("they match");
         return {
           ...blog,
           cover: preview.src,

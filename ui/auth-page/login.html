@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles/auth.css" />
+    <link rel="stylesheet" href="/ui/auth-page/styles/auth.css" />
     <!-- Font Awesome Icons -->
     <script
       src="https://kit.fontawesome.com/92d2814568.js"
@@ -17,23 +17,23 @@
       <nav id="globalNav">
         <ul class="menu">
           <li>
-            <a href="../../index.html"><span>home</span></a>
+            <a href="/index.html"><span>home</span></a>
           </li>
           <li>
-            <a href="../about-page/index.html"><span>about</span></a>
+            <a href="/ui/about-page/index.html"><span>about</span></a>
           </li>
           <li>
-            <a href="../blog-page/index.html"><span>blog</span></a>
+            <a href="/ui/blog-page/index.html"><span>blog</span></a>
           </li>
           <li>
-            <a href="../projects-page/index.html"><span>projects</span></a>
+            <a href="/ui/projects-page/index.html"><span>projects</span></a>
           </li>
           <li>
-            <a href="../contact-page/index.html"><span>contact</span></a>
+            <a href="/ui/contact-page/index.html"><span>contact</span></a>
           </li>
           <li>
-            <a href="../auth-page/index.html">
-              <i class="fa-solid fa-user"></i
+            <a href="/ui/auth-page/index.html">
+              <i id="account" class="fa-solid fa-user"></i
             ></a>
           </li>
         </ul>
@@ -46,7 +46,7 @@
           <h1>Log In</h1>
         </div>
         <div class="google-login">
-          <img src="./assets/Frame.svg" alt="" />
+          <img src="/assets/svg/Frame.svg" alt="" />
         </div>
         <div class="striped">
           <div class="striped-line"></div>
@@ -81,12 +81,14 @@
           </form>
         </div>
         <div class="other-auth">
-          <p>Don't have an account? <a href="./index.html">Sign Up</a></p>
+          <p>
+            Don't have an account?
+            <a href="/ui/auth-page/index.html">Sign Up</a>
+          </p>
         </div>
       </div>
     </main>
 
-    <!-- <script src="./js/main.js"></script> -->
-    <script src="./js/login.js"></script>
+    <script src="/ui/auth-page/js/login.js"></script>
   </body>
 </html>

@@ -116,6 +116,9 @@ a {
   color: inherit;
 }
 
+i {
+  color: var(--secondary);
+}
 @media (max-width: 575.98px) {
   html {
     font-size: 0.6rem;

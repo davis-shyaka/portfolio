@@ -18,22 +18,18 @@ if (oldBlog.length > 0) {
 // previewing the cover image within the form
 async function showPreview(event) {
   if (event.target.files.length > 0) {
-    // let src = URL.createObjectURL(event.target.files[0]);
     preview.src = await readImage(event.target.files[0]);
-    // preview.src = src;
     preview.style.display = "block";
   }
 }
 
 // read image function
-
 function readImage(file) {
   return new Promise((resolve, reject) => {
     const fileReader = new FileReader();
     fileReader.readAsDataURL(file);
     fileReader.addEventListener("load", (e) => {
       resolve(fileReader.result);
-      // console.log(fileReader);
     });
   });
 }
@@ -66,15 +62,6 @@ form.addEventListener("submit", (e) => {
         data.author = author.value;
         data.article = article.value;
 
-        // getting today's date
-        // let today = new Date();
-        // let dd = String(today.getDate()).padStart(2, "0");
-        // let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-        // let yyyy = today.getFullYear();
-        // let hr = today.getHours();
-        // let min = today.getMinutes();
-
-        // today = dd + "/" + mm + "/" + yyyy + " - " + hr + ":" + min;
         let today = Date.now();
         today = new Date(today).toDateString();
         data.posted = today;
@@ -130,7 +117,6 @@ function showError(id, serial, message, errorTxt) {
   errorTxt[serial].innerHTML = message;
   id.style.border = "1px solid red";
   errorTxt.forEach((e) => {
-    // e.classList.add("active");
     e.style.color = "red";
     e.style.marginBottom = "5px";
   });
