@@ -4,7 +4,7 @@ const checkIsLoggedIn = () => {
     // console.log("This user is logged in");
     const account = document.getElementById("account");
     // account.outerHTML = "<i id='logout' class='fa-solid fa-power-off'></i>";
-    account.outerHTML = `<a href='#'>
+    account.outerHTML = `<a href='/ui/auth-page/logout.html'>
     <i id='logout' class='fa-solid fa-power-off'></i></a>`;
     // history.back();
   }
@@ -12,3 +12,7 @@ const checkIsLoggedIn = () => {
 };
 
 export default checkIsLoggedIn;
+
+{
+  /* <span id='logout'>Logout</span> */
+}

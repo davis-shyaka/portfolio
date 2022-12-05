@@ -4,30 +4,24 @@ let blogData = JSON.parse(window.localStorage.getItem("blog")) ?? [];
 const ourBlog = blogData.find(({ id }) => {
   return id == newURL.hash.replace("#", "");
 });
-console.log(ourBlog);
-// const { cover, id, title, caption, author, posted, reads, article } = ourBlog;
 
+if (newURL.hash.includes("#")) {
+  console.log("i am here");
+}
+
+let preview = document.getElementById("file-ip-1-preview");
 let form = document.getElementById("form");
 let { title, caption, author, article, image_uploads } = form;
-
-// image_uploads.files = ourBlog.cover;
-title.value = ourBlog.title;
-caption.value = ourBlog.caption;
-author.value = ourBlog.author;
-article.value = ourBlog.article;
 
 // previewing the cover image within the form
 async function showPreview(event) {
   if (event.target.files.length > 0) {
-    // let src = URL.createObjectURL(event.target.files[0]);
     preview.src = await readImage(event.target.files[0]);
-    // preview.src = src;
     preview.style.display = "block";
   }
 }
 
 // read image function
-
 function readImage(file) {
   return new Promise((resolve, reject) => {
     const fileReader = new FileReader();
@@ -37,11 +31,37 @@ function readImage(file) {
     });
   });
 }
+preview.style.display = "block";
+preview.src = ourBlog.cover;
+title.value = ourBlog.title;
+caption.value = ourBlog.caption;
+author.value = ourBlog.author;
+article.value = ourBlog.article;
 
 // handle submit
 form.addEventListener("submit", (e) => {
+  let { title, caption, author, article } = form;
   e.preventDefault();
-  validateForm(form);
+  if (validateForm(form)) {
+    const updatedBlog = blogData.map((blog) => {
+      if (blog.id === ourBlog.id) {
+        // console.log("they match");
+        return {
+          ...blog,
+          cover: preview.src,
+          title: title.value,
+          author: author.value,
+          caption: caption.value,
+          article: article.value,
+          updatedAt: Date.now(),
+        };
+      }
+      return blog;
+    });
+
+    localStorage.setItem("blog", JSON.stringify(updatedBlog));
+    window.location.replace("/ui/admin/pages/blogs/index.html");
+  }
 });
 
 // form validation
