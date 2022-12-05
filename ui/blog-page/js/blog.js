@@ -4,7 +4,7 @@ blogData.forEach(({ cover, id, title, caption, author, posted, reads }) => {
   articles.insertAdjacentHTML(
     "afterbegin",
     `
-    <a href="./read.html#${id}" rel="noopener noreferrer">
+    <a href="/ui/blog-page/read.html#${id}" rel="noopener noreferrer">
           <div class="card">
             <div class="card-content">
               <div class="card-image">
@@ -18,7 +18,7 @@ blogData.forEach(({ cover, id, title, caption, author, posted, reads }) => {
                     <h3>${title}</h3>
                     <h4>${caption}</h4>
                     <div class="card-stats">
-                      <img src="./assets/Vector.svg" alt="" srcset="" />
+                    <i class="fa-regular fa-eye"></i>
                       <p>${reads}</p>
                       <p>${posted}</p>
                     </div>

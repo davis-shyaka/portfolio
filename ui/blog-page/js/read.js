@@ -1,10 +1,8 @@
 const newURL = new URL(location.href);
-// console.log(newURL);
 let blogData = JSON.parse(window.localStorage.getItem("blog")) ?? [];
 const ourBlog = blogData.find(({ id }) => {
   return id == newURL.hash.replace("#", "");
 });
-// console.log(ourBlog);
 const articleDOM = document.querySelector("#read-article");
 const { cover, id, title, caption, author, posted, reads, likes, article } =
   ourBlog;
@@ -51,8 +49,6 @@ let today = Date.now();
 today = new Date(today).toDateString();
 commentForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  //   console.log("clicked button");
-  //   console.log(comment.value);
   if (validateForm(commentForm)) {
     if (user) {
       if (ourBlog.comments) {
@@ -70,7 +66,6 @@ commentForm.addEventListener("submit", (e) => {
         ourBlog.comments = [comment.value];
       }
       localStorage.setItem("blog", JSON.stringify(blogData));
-      //   console.log(blogData);
       comment.value = "";
       location.reload();
     } else {

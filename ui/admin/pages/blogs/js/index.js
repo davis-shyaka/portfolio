@@ -13,7 +13,7 @@ blogData.forEach((item) => {
         <td data-label="Reads">${item.reads}</td>
         <td data-label="Action">
           <div class="actions">
-          <a href="./editblog.html#${item.id}" rel="noopener noreferrer">
+          <a href="/ui/admin/pages/blogs/editblog.html#${item.id}" rel="noopener noreferrer">
           <i id="edit" class="fa-solid fa-pen-to-square"></i>
           </a>
               <i id="delete" data-id = ${item.id} class="fa-solid fa-trash delete-blog"></i>

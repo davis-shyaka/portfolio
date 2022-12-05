@@ -37,16 +37,7 @@ form.addEventListener("submit", (e) => {
         data.mail = mail.value;
 
         // getting today's date
-        // let today = new Date();
-        // let dd = String(today.getDate()).padStart(2, "0");
-        // let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-        // let yyyy = today.getFullYear();
-        // let hr = today.getHours();
-        // let min = today.getMinutes();
-
-        // today = dd + "/" + mm + "/" + yyyy + " - " + hr + ":" + min;
         let today = Date.now();
-        // today = new Date(today).toDateString();
         today = new Date(today).toString();
         data.posted = today;
 
@@ -62,8 +53,6 @@ form.addEventListener("submit", (e) => {
     email.value = "";
     subject.value = "";
     mail.value = "";
-
-    // window.location.replace("../../pages/blogs/index.html");
   }
 });
 
