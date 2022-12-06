@@ -26,7 +26,7 @@ form.addEventListener("submit", (e) => {
       if (checkUser(currentUser).isAdmin) {
         email.value = "";
         password.value = "";
-        location.href = "/ui/admin";
+        location.href = "/ui/admin/";
       } else {
         email.value = "";
         password.value = "";
