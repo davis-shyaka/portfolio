@@ -47,43 +47,52 @@
             <div class="form-txt">
               <h1>Get in touch</h1>
               <p>
-                Virtuality aside, I’m very approachable and would love to speak
+                Virtuality aside, I'm very approachable and would love to speak
                 with you. Feel free to shoot me an email , or find me at the
                 socials below.
               </p>
               <p>Cheers.</p>
               <div class="icons">
-                <img src="/assets/svg/Github.svg" alt="" srcset="" />
-                <img src="/assets/svg/Instagram.svg" alt="" srcset="" />
-                <img src="/assets/svg/Linkedin.svg" alt="" srcset="" />
-                <img src="/assets/svg/Twitter.svg" alt="" srcset="" />
+                <a href="http://github.com/davis-shyaka">
+                  <img src="/assets/svg/Github.svg" alt="" srcset="" />
+                </a>
+                <a href="http://">
+                  <img src="/assets/svg/Instagram.svg" alt="" srcset="" />
+                </a>
+
+                <a href="http://">
+                  <img src="/assets/svg/Linkedin.svg" alt="" srcset="" />
+                </a>
+                <a href="http://">
+                  <img src="/assets/svg/Twitter.svg" alt="" srcset="" />
+                </a>
               </div>
             </div>
             <div class="form-details">
-              <input type="text" name="name" id="name" placeholder="Name" />
-              <div id="errorTxt"></div>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Your Email"
-              />
-              <div id="errorTxt"></div>
-              <input
-                type="text"
-                name="subject"
-                id="subject"
-                placeholder="Subject"
-              />
-              <div id="errorTxt"></div>
-              <textarea
-                name="mail"
-                id="mail"
-                cols="52"
-                rows="7"
-                placeholder="Message"
-              ></textarea>
-              <div id="errorTxt"></div>
+              <!-- Name -->
+              <div id="name-label">
+                <input name="name" id="name" placeholder="Name" />
+                <div id="errorTxt" class="error"></div>
+              </div>
+              <!-- Email -->
+              <div id="email-label">
+                <input name="email" id="email" placeholder="Your Email" />
+                <div id="errorTxt" class="error"></div>
+              </div>
+              <!-- Subject -->
+              <div id="subject-label">
+                <input name="subject" id="subject" placeholder="Subject" />
+                <div id="errorTxt" class="error"></div>
+              </div>
+              <!-- Message -->
+              <div id="message-label">
+                <textarea
+                  name="message"
+                  id="message"
+                  placeholder="Your Message"
+                ></textarea>
+                <div id="errorTxt" class="error"></div>
+              </div>
               <button type="submit">SEND MESSAGE</button>
             </div>
           </div>

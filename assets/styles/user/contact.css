@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -34,6 +34,7 @@ html {
   /* --black: #000; */
   /* --white: #fff; */
   --grey: #aaa;
+  --danger: #ff3c78;
 }
 
 body {
@@ -149,9 +150,6 @@ a {
 
 /* Contact Form Styles */
 .container {
-  max-width: 100%;
-  width: 65%;
-  height: 80vh;
   margin: 0 auto;
   background-color: var(--primary);
   border-radius: 30px;
@@ -165,26 +163,22 @@ a {
 }
 
 .form {
-  display: flex;
-  /* justify-content: space-between; */
+  display: grid;
+  gap: 1.5rem;
+  grid-auto-columns: 1fr;
+  grid-template-areas:
+    'one'
+    'two';
   overflow: hidden;
   font-weight: 300;
-  width: 100%;
 }
 
 .form .form-txt {
-  /* flex-basis: 48%; */
-  width: 50%;
+  grid-area: one;
   padding: 20px;
 }
 
-.form .form-txt > .icons {
-  display: flex;
-  justify-content: space-around;
-}
-
 .form .form-txt img {
-  /* flex-basis: 48%; */
   margin-top: 50px;
   width: 20px;
   margin-right: 20px;
@@ -208,10 +202,8 @@ a {
 }
 
 .form .form-details {
-  display: flex;
+  grid-area: two;
   /* flex-basis: 48%; */
-  width: 50vw;
-  flex-direction: column;
   overflow: hidden;
 }
 .form .form-details input {
@@ -230,6 +222,7 @@ input:focus {
 }
 
 .form .form-details textarea {
+  width: 100%;
   padding: 15px 20px;
   color: var(--black);
   outline: none;
@@ -259,105 +252,28 @@ input:focus {
   cursor: pointer;
 }
 
-@media (max-width: 500px) {
-  .container {
-    width: 75vw;
-    /* height: 70vh; */
-    height: auto;
-    /* padding-right: 20px; */
-    margin: 0;
-  }
-  .form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: inherit;
-  }
-
-  .form > .form-txt {
-    width: 100%;
-  }
-  .form > .form-txt p {
-    font-size: 1.2rem;
-  }
-  .form > .form-details {
-    width: 100%;
-  }
-
-  .form .form-txt img {
-    /* flex-basis: 48%; */
-    margin-top: 10px;
-    width: 15px;
-    margin-right: 10px;
-  }
-
-  .form .form-details textarea {
-    height: 10%;
-    width: 100%;
-  }
+.form .form-details .invalid {
+  margin-bottom: 5px;
+  color: var(--danger);
+  text-align: right;
+  font-size: 0.95em;
 }
-
-@media (min-width: 501px) and (max-width: 768px) {
-  .form {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .form > .form-txt {
-    width: 100%;
-  }
-  .form > .form-details {
-    width: 100%;
-  }
-}
-/* -- Resume Link Styles -- */
-
-body.menu-toggled > .meta-link > span {
-  color: rgb(30, 30, 30);
-}
-
-#source-link {
-  bottom: 60px;
-}
-
-#source-link > i {
-  color: rgb(94, 106, 210);
-}
-
-.meta-link {
-  align-items: center;
-  backdrop-filter: blur(3px);
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
-  bottom: 10px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  display: inline-flex;
-  gap: 5px;
-  left: 10px;
-  padding: 10px 20px;
-  position: fixed;
-  text-decoration: none;
-  transition: background-color 400ms, border-color 400ms;
-  z-index: 10000;
-}
-
-.meta-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.meta-link > i,
-.meta-link > span {
-  height: 20px;
-  line-height: 20px;
-}
-
-.meta-link > span {
+.form .form-details .success {
+  margin-bottom: 5px;
   color: var(--secondary);
-  /* font-family: "Rubik", sans-serif; */
-  font-family: "Poppins";
-  font-weight: 500;
+  text-align: right;
+}
+
+.form .form-details .invalid input {
+  border: 1px solid var(--danger);
+}
+.form .form-details .invalid textarea {
+  border: 1px solid var(--danger);
+}
+
+.form .form-details .success input {
+  border: 1px solid var(--secondary);
+}
+.form .form-details .success textarea {
+  border: 1px solid var(--secondary);
 }

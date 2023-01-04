@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/assets/styles/admin/addBlog.css" />
     <link rel="stylesheet" href="/assets/styles/admin/index.css" />
-    <link rel="stylesheet" href="/assets/styles/admin/table.css" />
     <!-- Font Awesome Icons -->
     <script
       src="https://kit.fontawesome.com/92d2814568.js"
@@ -67,12 +66,6 @@
       </nav>
 
       <div class="stats">
-        <!-- <div id="add-blog">
-          <a href="#">
-            <i class="fa-solid fa-save"></i>
-            <span>Save</span>
-          </a>
-        </div> -->
         <div class="content-containers">
           <div class="recent-content card">
             <div class="content-details">
@@ -83,15 +76,17 @@
                       <label for="image_uploads"
                         >Choose images to upload (PNG, JPG)</label
                       >
-                      <input
-                        type="file"
-                        id="image_uploads"
-                        name="image_uploads"
-                        accept=".jpg, .jpeg, .png"
-                        multiple
-                        onchange="showPreview(event)"
-                      />
-                      <div id="errorTxt"></div>
+                      <div id="image_uploads-label">
+                        <input
+                          type="file"
+                          id="image_uploads"
+                          name="image_uploads"
+                          accept=".jpg, .jpeg, .png"
+                          multiple
+                          onchange="showPreview(event)"
+                        />
+                        <div id="errorTxt" class="error"></div>
+                      </div>
                     </div>
                     <div class="preview">
                       <img id="file-ip-1-preview" />
@@ -99,34 +94,29 @@
                     <!-- <img id="canvas" src="../../assets/avatar.jpg" /> -->
                   </div>
                   <div class="form-details">
-                    <input
-                      type="text"
-                      name="title"
-                      id="title"
-                      placeholder="Title"
-                    />
-                    <div id="errorTxt"></div>
-                    <input
-                      type="text"
-                      name="caption"
-                      id="caption"
-                      placeholder="Caption"
-                    />
-                    <div id="errorTxt"></div>
-                    <input
-                      type="text"
-                      name="author"
-                      id="author"
-                      placeholder="Author"
-                    />
-                    <div id="errorTxt"></div>
-                    <textarea
-                      name="article"
-                      id="article"
-                      rows="10"
-                      placeholder="Article"
-                    ></textarea>
-                    <div id="errorTxt"></div>
+                    <div id="title-label">
+                      <input name="title" id="title" placeholder="Title" />
+                      <div id="errorTxt" class="error"></div>
+                    </div>
+                    <div id="caption-label">
+                      <input
+                        name="caption"
+                        id="caption"
+                        placeholder="Caption"
+                      />
+                      <div id="errorTxt" class="error"></div>
+                    </div>
+
+                    <div id="content-label">
+                      <textarea
+                        name="content"
+                        id="content"
+                        placeholder="Content"
+                        rows="20"
+                      ></textarea>
+                      <div id="errorTxt" class="error"></div>
+                    </div>
+
                     <button type="submit">POST</button>
                   </div>
                 </div>

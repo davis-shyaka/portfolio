@@ -17,6 +17,11 @@ const loginUser = async (email, password) => {
       } else {
         location.href = '/'
       }
+    } else if (data?.success === false) {
+      const form = document.getElementById('form')
+      const { email, password } = form
+      setInvalid(email, data?.data[0]?.message)
+      setInvalid(password, '')
     }
   } catch (error) {
     console.log('Error signing in a user: ', error.message)

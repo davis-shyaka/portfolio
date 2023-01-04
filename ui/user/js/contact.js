@@ -1,98 +1,121 @@
-const form = document.getElementById("form");
-const sender = document.getElementById("name");
-const email = document.getElementById("email");
-const subject = document.getElementById("subject");
-const mail = document.getElementById("mail");
-const errorTxt = document.querySelectorAll("#errorTxt");
-let mailArray = [];
-let oldMail = JSON.parse(window.localStorage.getItem("mail")) ?? [];
+const form = document.getElementById('form')
+
+const errorTxt = document.querySelectorAll('#errorTxt')
+let mailArray = []
+let oldMail = JSON.parse(window.localStorage.getItem('mail')) ?? []
 if (oldMail.length > 0) {
   oldMail?.forEach((item) => {
-    mailArray.push(item);
-  });
+    mailArray.push(item)
+  })
 }
 
+const { name, email, subject, message } = form
 // on submit event
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
+form.addEventListener('submit', (e) => {
+  e.preventDefault()
 
   // console.log("button clicked");
-  if (formValidation()) {
+  if (validateForm(form)) {
     // base data object
     const data = {
-      id: "",
-      sender: "",
-      email: "",
-      subject: "",
-      mail: "",
-      posted: "",
-    };
+      id: '',
+      sender: '',
+      email: '',
+      subject: '',
+      mail: '',
+      posted: ''
+    }
     // storing the data
     const acceptData = () => {
       try {
-        data.id = Date.now();
-        data.sender = sender.value;
-        data.email = email.value;
-        data.subject = subject.value;
-        data.mail = mail.value;
+        data.id = Date.now()
+        data.sender = sender.value
+        data.email = email.value
+        data.subject = subject.value
+        data.mail = mail.value
 
         // getting today's date
-        let today = Date.now();
-        today = new Date(today).toString();
-        data.posted = today;
+        let today = Date.now()
+        today = new Date(today).toString()
+        data.posted = today
 
-        return data;
+        return data
       } catch (error) {
-        console.log("Error while storing data in local storage:");
-        console.log(error);
+        console.log('Error while storing data in local storage:')
+        console.log(error)
       }
-    };
-    mailArray.push(acceptData());
-    window.localStorage.setItem("mail", JSON.stringify(mailArray));
-    sender.value = "";
-    email.value = "";
-    subject.value = "";
-    mail.value = "";
+    }
+    mailArray.push(acceptData())
+    window.localStorage.setItem('mail', JSON.stringify(mailArray))
+    sender.value = ''
+    email.value = ''
+    subject.value = ''
+    mail.value = ''
   }
-});
+})
 
-// validate the form
-let formValidation = () => {
-  if (
-    engine(sender, 0, "Name cannot be blank", errorTxt) &&
-    engine(email, 1, "Email cannot be blank", errorTxt) &&
-    engine(subject, 2, "Subject cannot be blank", errorTxt) &&
-    engine(mail, 3, "Message cannot be blank", errorTxt)
-  ) {
-    return true;
-  } else {
-    return false;
-  }
-};
+// validate input fields
+// User Validation
+const validateForm = (form) => {
+  let isRequired = true
 
-// engine function which will do the basic check
-let engine = (id, serial, message, errorTxt) => {
-  if (id.value.trim() === "") {
-    showError(id, serial, message, errorTxt);
-    return false;
+  // Check for Required Name
+  if (form.name.value.trim() === '') {
+    setInvalid(form.name, 'Name is Required!')
+    isRequired = false
   } else {
-    showSuccess(id, serial);
-    return true;
+    setSuccess(form.name)
   }
-};
-// Show input error messages
-function showError(id, serial, message, errorTxt) {
-  errorTxt[serial].innerHTML = message;
-  id.style.border = "1px solid red";
-  errorTxt.forEach((e) => {
-    // e.classList.add("active");
-    e.style.color = "red";
-    e.style.marginBottom = "5px";
-  });
+
+  // Check for Required Email
+  if (form.email.value.trim() === '') {
+    setInvalid(form.email, 'Email is required!')
+    isRequired = false
+  } else if (!validEmail(form.email.value.trim())) {
+    setInvalid(form.email, 'Email is not valid!')
+    isRequired = false
+  } else {
+    setSuccess(form.email)
+  }
+
+  // Check for Required Subject
+  if (form.subject.value.trim() === '') {
+    setInvalid(form.subject, 'Subject is Required!')
+    isRequired = false
+  } else {
+    setSuccess(form.subject)
+  }
+
+  // Check for Required Message
+  if (form.message.value.trim() === '') {
+    setInvalid(form.message, 'Message is Required!')
+    isRequired = false
+  } else {
+    setSuccess(form.message)
+  }
+
+  return isRequired
 }
 
-// show input success
-const showSuccess = (id, serial) => {
-  errorTxt[serial].innerHTML = "";
-  id.style.border = "1px solid #a8eb12";
-};
+// Set for Success Input Value
+const setSuccess = (input) => {
+  const formControl = input.parentElement
+  formControl.className = 'form-control success'
+  const formAlert = formControl.querySelector('.error')
+  formAlert.innerHTML = ''
+}
+
+// Set for Invalid Input Value
+const setInvalid = (input, message) => {
+  const formControl = input.parentElement
+  const formAlert = formControl.querySelector('.error')
+  formControl.className = 'form-control invalid'
+  formAlert.innerHTML = message
+}
+
+// Set for Valid Email Value
+const validEmail = (email) => {
+  const re =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  return re.test(email.toLowerCase())
+}

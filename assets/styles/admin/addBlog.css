@@ -1,11 +1,10 @@
 /* Googlefont Poppins CDN Link */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  color: var(--secondary);
+  font-family: 'Poppins', sans-serif;
   line-height: 1.25;
 }
 :root {
@@ -15,13 +14,17 @@
   --secondary: #a8eb12;
   --tertiary: #00ffff;
   --complementive: #f9f871;
-  --danger: #ff00ff;
+  --danger: #ff3c78;
   --bg-dark: #020917;
   --bg-gradient: linear-gradient(180deg, #020917 0%, #1e3a8a 100%);
 }
 
 .content .stats .content-containers .recent-content {
-  width: 60vw;
+  background-color: var(--bg-dark);
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  padding: 10px;
 }
 
 .form {
@@ -31,7 +34,6 @@
   justify-content: space-between;
   overflow: hidden;
   font-weight: 300;
-  width: auto;
 }
 
 .form::-webkit-scrollbar {
@@ -39,7 +41,6 @@
 }
 
 .form .image-input {
-  width: 40%;
   padding: 20px;
   /* background-color: gray; */
   border-radius: 10px 0 0 10px;
@@ -50,7 +51,6 @@
 }
 
 #image_uploads {
-  width: 75%;
   margin-top: 20px;
   border-radius: 10px;
   padding: 7px;
@@ -58,7 +58,7 @@
 }
 
 .form .image-input .preview img {
-  max-width: 200px;
+  max-width: 500px;
   max-height: 500px;
   width: auto;
   height: auto;
@@ -70,10 +70,12 @@
 .form .image-input .preview {
   margin-top: 20px;
 }
+.form .image-input label {
+  color: var(--white);
+}
 
 .form .form-details {
   display: flex;
-  width: 60%;
   flex-direction: column;
   overflow: hidden;
 }
@@ -127,18 +129,26 @@ input:focus {
 .form .form-details .invalid {
   margin-bottom: 5px;
   color: var(--danger) !important;
-  /* text-align: right; */
-  font-size: 0.8em;
+  text-align: right;
+  font-size: 0.95em;
 }
 .form .form-details .success {
+  margin-bottom: 5px;
   color: var(--secondary);
+  text-align: right;
 }
 
-.form .form-details .invalid input {
+.form .form-details .invalid input,
+.image_name .invalid input {
   border: 1px solid var(--danger);
 }
 
-.form .form-details .success input {
+.form .form-details .invalid textarea {
+  border: 1px solid var(--danger);
+}
+
+.form .form-details .success input,
+.image_name .success input {
   border: 1px solid var(--secondary);
 }
 
