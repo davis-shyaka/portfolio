@@ -5,11 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/assets/styles/admin/index.css" />
-    <!-- Font Awesome Icons -->
-    <script>
-      // localStorage.
-    </script>
+    <link rel="stylesheet" href="/assets/styles/admin/table.css" />
 
+    <!-- Font Awesome Icons -->
     <script
       src="https://kit.fontawesome.com/92d2814568.js"
       crossorigin="anonymous"
@@ -67,12 +65,30 @@
           </ul>
         </div>
       </nav>
-
       <div class="stats">
-        <div id="stats-container" class="stats-containers"></div>
+        <div class="content-containers">
+          <div class="recent-content card">
+            <div class="content-details">
+              <table>
+                <caption>
+                  Recent Comments
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Comment</th>
+                    <th scope="col">On Article</th>
+                    <th scope="col">Publ. Date</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="comments"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-    <script src="/ui/admin/js/stats.js" type="module"></script>
-    <!-- <script src="./js/main.js" type="module"></script> -->
+    <script src="/ui/admin/js/entries.js"></script>
   </body>
 </html>

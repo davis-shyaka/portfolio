@@ -4,12 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:"
+    />
     <link rel="stylesheet" href="/assets/styles/admin/index.css" />
-    <!-- Font Awesome Icons -->
-    <script>
-      // localStorage.
-    </script>
+    <link rel="stylesheet" href="/assets/styles/admin/table.css" />
 
+    <!-- Font Awesome Icons -->
     <script
       src="https://kit.fontawesome.com/92d2814568.js"
       crossorigin="anonymous"
@@ -69,10 +71,39 @@
       </nav>
 
       <div class="stats">
-        <div id="stats-container" class="stats-containers"></div>
+        <div id="add-blog">
+          <a href="/ui/admin/pages/addBlog.html" rel="noopener noreferrer">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add Blog</span>
+          </a>
+        </div>
+
+        <div class="content-containers">
+          <div class="recent-content card">
+            <div class="content-details">
+              <table>
+                <caption>
+                  Published Blogs
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Cover</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Publ. Date</th>
+                    <th scope="col">Reads</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="articles">
+                  <!-- Render articles list here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-    <script src="/ui/admin/js/stats.js" type="module"></script>
-    <!-- <script src="./js/main.js" type="module"></script> -->
+
+    <script src="/ui/admin/js/blogs.js"></script>
   </body>
 </html>

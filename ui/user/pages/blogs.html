@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/assets/styles/user/landing.css" />
+    <link rel="stylesheet" href="/assets/styles/user/blogs.css" />
     <!-- Font Awesome Icons -->
     <script
       src="https://kit.fontawesome.com/92d2814568.js"
@@ -39,28 +39,32 @@
         </ul>
       </nav>
     </header>
-
     <main>
-      <div id="gallery">
-        <div class="tile">
-          <!-- <img src="" /> -->
-          <div class="description">
-            <p>Hi, I'm <span id="myName">Davis</span></p>
-            <p>
-              I like to design and build
-              <span id="myPassion">creative</span>
-              <span id="myProducts">software</span>
-            </p>
+      <div id="topSection">
+        <div class="backCard">
+          <img
+            class="avatar"
+            src="/assets/images/avatar.jpg"
+            alt=""
+            srcset=""
+          />
+        </div>
+
+        <div id="title">
+          <div class="name">
+            <p><span id="myName">Blog</span></p>
           </div>
+          <div class="line"></div>
+          <div class="role"><p>Articles I've written</p></div>
         </div>
       </div>
 
-      <a id="source-link" class="meta-link">
-        <i class="fa-solid fa-link"></i>
-        <span>Resume</span>
-      </a>
+      <!-- Article Cards -->
+      <div id="cards"></div>
     </main>
 
-    <script src="main.js" defer type="module"></script>
+    <script src="/main.js" type="module"></script>
+    <script src="/ui/user/js/blogs.js"></script>
+    <script src="/assets/styles/js/glow.js"></script>
   </body>
 </html>
