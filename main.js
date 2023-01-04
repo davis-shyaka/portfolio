@@ -1,3 +1,3 @@
-import checkIsLoggedIn from "/global/loggedIn.js";
+import checkIsLoggedIn from '/global/loggedIn.js'
 
-checkIsLoggedIn();
+checkIsLoggedIn()

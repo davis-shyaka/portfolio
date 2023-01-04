@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/assets/styles/user/landing.css" />
+    <link rel="stylesheet" href="/assets/styles/user/blogs-read.css" />
     <!-- Font Awesome Icons -->
     <script
       src="https://kit.fontawesome.com/92d2814568.js"
@@ -39,28 +39,42 @@
         </ul>
       </nav>
     </header>
+    <div id="article-wrapper">
+      <div class="navigation-section">
+        <button onclick="history.back()">
+          <img src="./assets/Top.svg" alt="" srcset="" />
+        </button>
+      </div>
+      <div id="read-article" class="article-section">
+        <!-- Inserted / Dynamic Article will render inside here -->
+      </div>
+    </div>
 
-    <main>
-      <div id="gallery">
-        <div class="tile">
-          <!-- <img src="" /> -->
-          <div class="description">
-            <p>Hi, I'm <span id="myName">Davis</span></p>
-            <p>
-              I like to design and build
-              <span id="myPassion">creative</span>
-              <span id="myProducts">software</span>
-            </p>
+    <!-- Comments Section -->
+    <div id="comment-form">
+      <div class="comment-form-title">
+        <h1>Comments</h1>
+      </div>
+      <form id="comment-input-form">
+        <div class="form-group">
+          <div class="comment-label">
+            <textarea
+              class="form-control status-box"
+              rows="3"
+              name="commentArea"
+              id="comment-area"
+              placeholder="Place your comment; or not..."
+            ></textarea>
+            <div id="errorTxt" class="error"></div>
           </div>
         </div>
+        <button id="post-button" type="submit">POST</button>
+      </form>
+      <div class="container">
+        <div id="old-comments"></div>
       </div>
-
-      <a id="source-link" class="meta-link">
-        <i class="fa-solid fa-link"></i>
-        <span>Resume</span>
-      </a>
-    </main>
-
-    <script src="main.js" defer type="module"></script>
+    </div>
+    <script src="/main.js" type="module"></script>
+    <script src="/ui/user/js/blogs-read.js"></script>
   </body>
 </html>
