@@ -1,3 +1,3 @@
 <script>
-  localStorage.removeItem('isLoggedIn') || (location.href = '/index.html')
+  sessionStorage.removeItem('auth-token') || (location.href = '/')
 </script>

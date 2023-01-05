@@ -1,10 +1,10 @@
 /* Googlefont Poppins CDN Link */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: var(--secondary);
   line-height: 1.25;
 }
@@ -70,7 +70,7 @@ table {
 }
 
 table caption {
-  font-family: "Poppins";
+  font-family: 'Poppins';
   font-size: 1.5em;
   margin: 0.5em 0 0.75em;
   font-weight: 200;
@@ -163,7 +163,7 @@ table .actions {
     float: left;
     font-weight: 300;
     color: var(--secondary);
-    font-family: "Poppins";
+    font-family: 'Poppins';
     text-transform: uppercase;
   }
 

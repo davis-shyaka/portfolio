@@ -62,9 +62,6 @@ const validateForm = (form) => {
   if (form.password.value.trim() === '') {
     setInvalid(form.password, 'Password is Required!')
     isRequired = false
-  } else if (form.password.value.length < 9) {
-    setInvalid(form.password, 'Password must be at least 9 characters!')
-    isRequired = false
   } else {
     setSuccess(form.password)
   }

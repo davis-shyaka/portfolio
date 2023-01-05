@@ -1,15 +1,35 @@
+// create a post
+const createPost = async (title, caption, content) => {
+  try {
+    const createPostResponse = await fetch(
+      `http://localhost:3000/post/create`,
+      {
+        headers: {
+          'content-type': 'application/json',
+          Authorization: `JWT ${sessionStorage.getItem('auth-token')}`
+        },
+        method: 'POST',
+        body: JSON.stringify({
+          title,
+          caption,
+          content
+        })
+      }
+    )
+    const data = await createPostResponse.json()
+    if (data && data.statusCode === 201) {
+      location.href = '/ui/admin/pages/blogs.html'
+    }
+  } catch (error) {
+    console.log('Error creating post: ', error)
+  }
+}
+
 const form = document.getElementById('form')
 const image = document.getElementById('image_uploads')
 const articles = document.getElementById('articles')
 const preview = document.getElementById('file-ip-1-preview')
 
-let blogArray = []
-let oldBlog = JSON.parse(window.localStorage.getItem('blog')) ?? []
-if (oldBlog.length > 0) {
-  oldBlog?.forEach((item) => {
-    blogArray.push(item)
-  })
-}
 // previewing the cover image within the form
 async function showPreview(event) {
   if (event.target.files.length > 0) {
@@ -29,62 +49,19 @@ function readImage(file) {
   })
 }
 // on submit event
-const { image_uploads, title, caption, content } = form
 form.addEventListener('submit', (e) => {
   e.preventDefault()
 
+  const title = form.title.value
+  const caption = form.caption.value
+  const content = form.content.value
   // console.log("button clicked");
   if (validateForm(form)) {
-    // base data object
-    const data = {
-      id: '',
-      cover: '',
-      title: '',
-      caption: '',
-      author: '',
-      article: '',
-      posted: '',
-      reads: '',
-      likes: '',
-      comments: []
-    }
-    // storing the data
-    const acceptData = () => {
-      try {
-        data.id = Date.now()
-        data.cover = preview.src
-        data.title = title.value
-        data.caption = caption.value
-        data.author = author.value
-        data.article = article.value
-
-        let today = Date.now()
-        today = new Date(today).toDateString()
-        data.posted = today
-        data.reads = 0
-        data.likes = 0
-
-        return data
-      } catch (error) {
-        console.log('Error while storing data in local storage:')
-        console.log(error)
-      }
-    }
-    blogArray.push(acceptData())
-    window.localStorage.setItem('blog', JSON.stringify(blogArray))
-    title.value = ''
-    caption.value = ''
-    author.value = ''
-    article.value = ''
-    image.value = ''
-    preview.style.display = 'none'
-
-    window.location.replace('/ui/admin/pages/blogs/index.html')
+    createPost(title, caption, content)
   }
 })
 
 // validate input fields
-// User Validation
 const validateForm = (form) => {
   let isRequired = true
 
