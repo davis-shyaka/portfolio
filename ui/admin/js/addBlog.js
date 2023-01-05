@@ -1,129 +1,116 @@
-const form = document.getElementById("form");
-const image = document.getElementById("image_uploads");
-const title = document.getElementById("title");
-const caption = document.getElementById("caption");
-const author = document.getElementById("author");
-const article = document.getElementById("article");
-const errorTxt = document.querySelectorAll("#errorTxt");
-const articles = document.getElementById("articles");
-const preview = document.getElementById("file-ip-1-preview");
-
-let blogArray = [];
-let oldBlog = JSON.parse(window.localStorage.getItem("blog")) ?? [];
-if (oldBlog.length > 0) {
-  oldBlog?.forEach((item) => {
-    blogArray.push(item);
-  });
+// create a post
+const createPost = async (title, caption, content) => {
+  try {
+    const createPostResponse = await fetch(
+      `http://localhost:3000/post/create`,
+      {
+        headers: {
+          'content-type': 'application/json',
+          Authorization: `JWT ${sessionStorage.getItem('auth-token')}`
+        },
+        method: 'POST',
+        body: JSON.stringify({
+          title,
+          caption,
+          content
+        })
+      }
+    )
+    const data = await createPostResponse.json()
+    if (data && data.statusCode === 201) {
+      location.href = '/ui/admin/pages/blogs.html'
+    }
+  } catch (error) {
+    console.log('Error creating post: ', error)
+  }
 }
+
+const form = document.getElementById('form')
+const image = document.getElementById('image_uploads')
+const articles = document.getElementById('articles')
+const preview = document.getElementById('file-ip-1-preview')
+
 // previewing the cover image within the form
 async function showPreview(event) {
   if (event.target.files.length > 0) {
-    preview.src = await readImage(event.target.files[0]);
-    preview.style.display = "block";
+    preview.src = await readImage(event.target.files[0])
+    preview.style.display = 'block'
   }
 }
 
 // read image function
 function readImage(file) {
   return new Promise((resolve, reject) => {
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-    fileReader.addEventListener("load", (e) => {
-      resolve(fileReader.result);
-    });
-  });
+    const fileReader = new FileReader()
+    fileReader.readAsDataURL(file)
+    fileReader.addEventListener('load', (e) => {
+      resolve(fileReader.result)
+    })
+  })
 }
 // on submit event
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
+form.addEventListener('submit', (e) => {
+  e.preventDefault()
 
+  const title = form.title.value
+  const caption = form.caption.value
+  const content = form.content.value
   // console.log("button clicked");
-  if (formValidation()) {
-    // base data object
-    const data = {
-      id: "",
-      cover: "",
-      title: "",
-      caption: "",
-      author: "",
-      article: "",
-      posted: "",
-      reads: "",
-      likes: "",
-      comments: [],
-    };
-    // storing the data
-    const acceptData = () => {
-      try {
-        data.id = Date.now();
-        data.cover = preview.src;
-        data.title = title.value;
-        data.caption = caption.value;
-        data.author = author.value;
-        data.article = article.value;
-
-        let today = Date.now();
-        today = new Date(today).toDateString();
-        data.posted = today;
-        data.reads = 0;
-        data.likes = 0;
-
-        return data;
-      } catch (error) {
-        console.log("Error while storing data in local storage:");
-        console.log(error);
-      }
-    };
-    blogArray.push(acceptData());
-    window.localStorage.setItem("blog", JSON.stringify(blogArray));
-    title.value = "";
-    caption.value = "";
-    author.value = "";
-    article.value = "";
-    image.value = "";
-    preview.style.display = "none";
-
-    window.location.replace("/ui/admin/pages/blogs/index.html");
+  if (validateForm(form)) {
+    createPost(title, caption, content)
   }
-});
+})
 
-// validate the form
-let formValidation = () => {
-  if (
-    engine(image, 0, "Must choose an image", errorTxt) &&
-    engine(title, 1, "Title cannot be blank", errorTxt) &&
-    engine(caption, 2, "Caption cannot be blank", errorTxt) &&
-    engine(author, 3, "Author cannot be blank", errorTxt) &&
-    engine(article, 4, "Article cannot be blank", errorTxt)
-  ) {
-    return true;
+// validate input fields
+const validateForm = (form) => {
+  let isRequired = true
+
+  // Check for Required Image_uploads
+  if (form.image_uploads.value.trim() === '') {
+    setInvalid(form.image_uploads, 'Image is Required!')
+    isRequired = false
   } else {
-    return false;
+    setSuccess(form.image_uploads)
   }
-};
 
-// engine function which will do the basic check
-let engine = (id, serial, message, errorTxt) => {
-  if (id.value.trim() === "") {
-    showError(id, serial, message, errorTxt);
-    return false;
+  // Check for Required Title
+  if (form.title.value.trim() === '') {
+    setInvalid(form.title, 'Title is Required!')
+    isRequired = false
   } else {
-    showSuccess(id, serial);
-    return true;
+    setSuccess(form.title)
   }
-};
-// Show input error messages
-function showError(id, serial, message, errorTxt) {
-  errorTxt[serial].innerHTML = message;
-  id.style.border = "1px solid red";
-  errorTxt.forEach((e) => {
-    e.style.color = "red";
-    e.style.marginBottom = "5px";
-  });
+  // Check for Required Caption
+  if (form.caption.value.trim() === '') {
+    setInvalid(form.caption, 'Caption is Required!')
+    isRequired = false
+  } else {
+    setSuccess(form.caption)
+  }
+
+  // Check for Required Content
+  if (form.content.value.trim() === '') {
+    setInvalid(form.content, 'Content is Required!')
+    isRequired = false
+  } else {
+    setSuccess(form.content)
+  }
+
+  return isRequired
 }
 
-// show input success
-const showSuccess = (id, serial) => {
-  errorTxt[serial].innerHTML = "";
-  id.style.border = "1px solid #a8eb12";
-};
+// Set for Success Input Value
+const setSuccess = (input) => {
+  const formControl = input.parentElement
+  formControl.className = 'form-control success'
+  const formAlert = formControl.querySelector('.error')
+  formAlert.innerHTML = ''
+}
+
+// Set for Invalid Input Value
+const setInvalid = (input, message) => {
+  const formControl = input.parentElement
+  const formAlert = formControl.querySelector('.error')
+  formControl.className = 'form-control invalid'
+  formAlert.innerHTML = message
+}

@@ -17,6 +17,11 @@ const loginUser = async (email, password) => {
       } else {
         location.href = '/'
       }
+    } else if (data?.success === false) {
+      const form = document.getElementById('form')
+      const { email, password } = form
+      setInvalid(email, data?.data[0]?.message)
+      setInvalid(password, '')
     }
   } catch (error) {
     console.log('Error signing in a user: ', error.message)
@@ -56,9 +61,6 @@ const validateForm = (form) => {
   // Check for Required Password
   if (form.password.value.trim() === '') {
     setInvalid(form.password, 'Password is Required!')
-    isRequired = false
-  } else if (form.password.value.length < 9) {
-    setInvalid(form.password, 'Password must be at least 9 characters!')
     isRequired = false
   } else {
     setSuccess(form.password)

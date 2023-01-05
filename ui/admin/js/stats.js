@@ -1,11 +1,11 @@
-const stats = document.getElementById("stats-container");
-let blogData = JSON.parse(window.localStorage.getItem("blog")) ?? [];
-const count = blogData.length;
+const stats = document.getElementById('stats-container')
+let blogData = JSON.parse(window.localStorage.getItem('blog')) ?? []
+const count = blogData.length
 const comments = blogData.forEach(({ comment }) => {
-  console.log(comment);
-});
+  console.log(comment)
+})
 stats.insertAdjacentHTML(
-  "afterbegin",
+  'afterbegin',
   `
     <div class="card">
         <div class="card-title">
@@ -29,6 +29,6 @@ stats.insertAdjacentHTML(
             <div class="number"></div>
           </div>
     `
-);
+)
 
-export default { count };
+export default { count }
