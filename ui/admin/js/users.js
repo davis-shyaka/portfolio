@@ -33,12 +33,13 @@ getAllUsers()
           <td data-label="Publ. Date">${item.createdAt}</td>
           <td data-label="Action">
             <div class="actions">
-                <i id="delete" data-id =${item._id} class="fa-solid fa-trash delete-blog"></i>
+                <i id="delete" data-id =${item._id} class="fa-solid fa-trash delete-user"></i>
                 <div class="global-container" id="global">
           <div class="window">
-          <p class="head-msg">Are you sure you want to delete "${item.title}"?</p>
-          <p class="main-msg">Title: ${item.surname}</p>
-          <p class="main-msg">Caption: ${item.email}</p>
+          <p class="head-msg">Are you sure you want to delete "${item.surname}"?</p>
+          <p class="main-msg">Surname: ${item.surname}</p>
+          <p class="main-msg">Given Name: ${item.givenName}</p>
+          <p class="main-msg">Email: ${item.email}</p>
           <div class="confirm">
               <button class="cancel-button">CANCEL</button>
               <button id="confirmed-delete" class="delete-button">DELETE</button>
@@ -82,20 +83,19 @@ const deleteUser = async (id) => {
 
 // the ui-part of deleting a user
 const handleDelete = () => {
-  const deleteButtons = [...document.getElementsByClassName('delete-blog')]
-  // console.log(deleteButtons)
+  const deleteButtons = [...document.getElementsByClassName('delete-user')]
+  const confirmedDelete = document.getElementById('confirmed-delete')
+
   deleteButtons.forEach((button) => {
     button.addEventListener('click', (e) => {
       const deleteID = e.currentTarget.dataset.id
-      deleteUser(deleteID)
+      const deleteBlogID = e.currentTarget.dataset.blog
       modal()
-      const confirmedDelete = document.getElementById('confirmed-delete')
       confirmedDelete.addEventListener('click', (e) => {
-        deleteUser(deleteID)
+        deleteUser(deleteID, deleteBlogID)
       })
     })
   })
-
   // Confirm Modal
   let del = document.getElementById('delete-button')
   let modalWindow = document.querySelector('.global-container')
