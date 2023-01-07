@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:"
+    />
     <link rel="stylesheet" href="/assets/styles/admin/index.css" />
     <link rel="stylesheet" href="/assets/styles/admin/table.css" />
 
@@ -45,9 +49,15 @@
               </a>
             </li>
             <li>
-              <a href="/ui/admin/pages/entries.html">
+              <a href="/ui/admin/pages/comments.html">
+                <i class="fa-solid fa-comment"></i>
+                <span class="links_name">Comments</span>
+              </a>
+            </li>
+            <li>
+              <a href="/ui/admin/pages/users.html">
                 <i class="fa-solid fa-users"></i>
-                <span class="links_name">Entries</span>
+                <span class="links_name">Users</span>
               </a>
             </li>
             <li>
@@ -65,31 +75,36 @@
           </ul>
         </div>
       </nav>
+
       <div class="stats">
         <div class="content-containers">
           <div class="recent-content card">
             <div class="content-details">
               <table>
                 <caption>
-                  Recent Comments
+                  Registered Users
                 </caption>
                 <thead>
                   <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Comment</th>
-                    <th scope="col">On Article</th>
+                    <th scope="col">Cover</th>
+                    <th scope="col">Surname</th>
+                    <th scope="col">Given Name</th>
+                    <th scope="col">Email</th>
                     <th scope="col">Publ. Date</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
-                <tbody id="comments"></tbody>
+                <tbody id="articles">
+                  <!-- Render articles list here -->
+                </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <script src="/ui/admin/js/entries.js"></script>
+
+    <script src="/ui/admin/js/users.js" type="module" defer></script>
     <script src="/ui/admin/js/admin.js" type="module"></script>
   </body>
 </html>

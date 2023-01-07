@@ -1,24 +1,42 @@
-const mail = document.getElementById("mail");
-let mailData = JSON.parse(window.localStorage.getItem("mail")) ?? [];
-mailData.forEach(({ id, sender, subject, posted }) => {
-  mail.insertAdjacentHTML(
-    "afterbegin",
-    `
-    <tr>
-    <td data-label="From">${sender}</td>
-    <td data-label="Subject">
-      ${subject}
-    </td>
-    <td data-label="Publ. Date">${posted}</td>
-    <td data-label="Action">
-      <div class="actions">
-        <a href="#"
-          ><i id="edit" class="fa-solid fa-reply"></i
-        ></a>
-      </div>
-    </td>
-  </tr>
-         
-          `
-  );
-});
+const baseURL = 'http://localhost:3000/mail/all'
+const mail = document.getElementById('mail')
+const getAllMessages = async () => {
+  try {
+    const response = await fetch(baseURL, {
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `JWT ${sessionStorage.getItem('auth-token')}`
+      }
+    })
+    const data = await response.json()
+    const mail = data.data
+    return mail
+  } catch (error) {
+    console.log('Error fetching messages: ', error.message)
+  }
+}
+
+// render all messages
+getAllMessages().then((res) => {
+  console.log(res)
+  res.forEach((item) => {
+    mail.insertAdjacentHTML(
+      'afterbegin',
+      `
+        <tr>
+          <td data-label="From">${item.name}</td>
+          <td data-label="Subject">${item.subject}</td>
+          <td data-label="Publ. Date">${item.createdAt}</td>
+          <td data-label="Action">
+            <div class="actions">
+              <a href="mailto:${item.email}">
+                <i id="edit" class="fa-solid fa-reply"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+             
+      `
+    )
+  })
+})

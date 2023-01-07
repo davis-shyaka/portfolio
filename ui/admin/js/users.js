@@ -1,51 +1,56 @@
-const baseURL = 'http://localhost:3000/post/all'
+const baseURL = 'http://localhost:3000/user/all'
 const articles = document.getElementById('articles')
-const getAllPosts = async () => {
+const getAllUsers = async () => {
   try {
-    const response = await fetch(baseURL)
+    const response = await fetch(baseURL, {
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `JWT ${sessionStorage.getItem('auth-token')}`
+      }
+    })
     const data = await response.json()
-    const blogs = data.data
-    return blogs
+    const users = data.data
+    return users
   } catch (error) {
-    console.log('Error fetching posts: ', error.message)
+    console.log('Error fetching users: ', error.message)
   }
 }
 
-// render all posts
-getAllPosts()
+// render all users
+getAllUsers()
   .then((res) => {
     res.forEach((item) => {
       articles.insertAdjacentHTML(
         'afterbegin',
         `
           <tr>
-            <td data-label="Cover">
+          <td data-label="Cover">
             <!-- <img src="${item.cover}" alt="" srcset="" /> -->
-            </td>
-          <td data-label="Title">${item.title}</td>
-          <td data-label="Publ. Date">${item.createdOn}</td>
-          <td data-label="Reads">${item.likes.length}</td>
+          </td>
+          <td data-label="Surname">${item.surname}</td>
+          <td data-label="GivenName">${item.givenName}</td>
+          <td data-label="Email">${item.email}</td>
+          <td data-label="Publ. Date">${item.createdAt}</td>
           <td data-label="Action">
             <div class="actions">
-              <a href="/ui/admin/pages/editBlog.html#${item._id}" rel="noopener noreferrer">
-              <i id="edit" class="fa-solid fa-pen-to-square"></i>
-              </a>
-              <i id="delete" data-id =${item._id} class="fa-solid fa-trash delete-blog"></i>
-              <div class="global-container" id="global">
+                <i id="delete" data-id =${item._id} class="fa-solid fa-trash delete-blog"></i>
+                <div class="global-container" id="global">
           <div class="window">
           <p class="head-msg">Are you sure you want to delete "${item.title}"?</p>
-          <p class="main-msg">Title: ${item.title}</p>
-          <p class="main-msg">Caption: ${item.caption}</p>
+          <p class="main-msg">Title: ${item.surname}</p>
+          <p class="main-msg">Caption: ${item.email}</p>
           <div class="confirm">
               <button class="cancel-button">CANCEL</button>
               <button id="confirmed-delete" class="delete-button">DELETE</button>
           </div>
-        </div>
+          </div>
+          
       </div>
-      </div>
+            </div>
           </td>
         </tr>
-        `
+           
+            `
       )
     })
   })
@@ -53,11 +58,11 @@ getAllPosts()
     handleDelete()
   })
 
-// delete a post
-const deletePost = async (id) => {
+// delete a user
+const deleteUser = async (id) => {
   try {
-    const deletePostResponse = await fetch(
-      `http://localhost:3000/post/delete/${id}`,
+    const deleteUserResponse = await fetch(
+      `http://localhost:3000/user/delete/${id}`,
       {
         headers: {
           'content-type': 'application/json',
@@ -66,30 +71,31 @@ const deletePost = async (id) => {
         method: 'DELETE'
       }
     )
-    const data = await deletePostResponse.json()
+    const data = await deleteUserResponse.json()
     if (data && data.statusCode === 200) {
       location.reload()
     }
   } catch (error) {
-    console.log('Error deleting the post: ', error)
+    console.log('Error deleting the user: ', error)
   }
 }
 
-// the ui-part of deleting a post
+// the ui-part of deleting a user
 const handleDelete = () => {
   const deleteButtons = [...document.getElementsByClassName('delete-blog')]
-  const confirmedDelete = document.getElementById('confirmed-delete')
-
+  // console.log(deleteButtons)
   deleteButtons.forEach((button) => {
     button.addEventListener('click', (e) => {
       const deleteID = e.currentTarget.dataset.id
-      const deleteBlogID = e.currentTarget.dataset.blog
+      deleteUser(deleteID)
       modal()
+      const confirmedDelete = document.getElementById('confirmed-delete')
       confirmedDelete.addEventListener('click', (e) => {
-        deletePost(deleteID, deleteBlogID)
+        deleteUser(deleteID)
       })
     })
   })
+
   // Confirm Modal
   let del = document.getElementById('delete-button')
   let modalWindow = document.querySelector('.global-container')
