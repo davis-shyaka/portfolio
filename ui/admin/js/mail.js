@@ -18,7 +18,6 @@ const getAllMessages = async () => {
 
 // render all messages
 getAllMessages().then((res) => {
-  console.log(res)
   res.forEach((item) => {
     mail.insertAdjacentHTML(
       'afterbegin',
@@ -26,7 +25,7 @@ getAllMessages().then((res) => {
         <tr>
           <td data-label="From">${item.name}</td>
           <td data-label="Subject">${item.subject}</td>
-          <td data-label="Publ. Date">${item.createdAt}</td>
+          <td data-label="Publ. Date">${item.date}</td>
           <td data-label="Action">
             <div class="actions">
               <a href="mailto:${item.email}">
