@@ -1,7 +1,8 @@
-const baseURL = 'http://localhost:3000/user/log_in'
+import baseURL from '../../../helpers/baseURL.js'
+
 const loginUser = async (email, password) => {
   try {
-    const response = await fetch(baseURL, {
+    const response = await fetch(`${baseURL}/user/log_in`, {
       method: 'post',
       headers: {
         'content-type': 'application/json'
@@ -9,19 +10,20 @@ const loginUser = async (email, password) => {
       body: JSON.stringify({ email, password })
     })
     const data = await response.json()
-    if (data?.data[0]?.user) {
-      sessionStorage.setItem('auth-token', data?.data[0]?.user?.token)
-      if (data?.data[0]?.user?.isAdmin === true) {
-        sessionStorage.setItem('isAdmin', data.data[0]?.user?.isAdmin)
-        location.href = '/ui/admin'
-      } else {
-        location.href = '/'
-      }
-    } else if (data?.success === false) {
+    if (data.success === false) {
       const form = document.getElementById('form')
       const { email, password } = form
       setInvalid(email, data?.data[0]?.message)
       setInvalid(password, '')
+    } else {
+      const user = data?.data[0]?.user
+      sessionStorage.setItem('auth-token', user.token)
+      if (user?.isAdmin === true) {
+        sessionStorage.setItem('isAdmin', user.isAdmin)
+        location.href = '/ui/admin'
+      } else {
+        location.href = '/'
+      }
     }
   } catch (error) {
     console.log('Error signing in a user: ', error.message)

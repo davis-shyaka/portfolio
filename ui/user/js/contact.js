@@ -1,61 +1,43 @@
-const form = document.getElementById('form')
-
-const errorTxt = document.querySelectorAll('#errorTxt')
-let mailArray = []
-let oldMail = JSON.parse(window.localStorage.getItem('mail')) ?? []
-if (oldMail.length > 0) {
-  oldMail?.forEach((item) => {
-    mailArray.push(item)
+import baseURL from '../../../helpers/baseURL.js'
+const sendMessage = async (name, email, subject, message) => {
+  const response = await fetch(baseURL + '/mail/create', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name,
+      email,
+      subject,
+      message
+    })
   })
+  const data = await response.json()
+  if (data.success === true) {
+    const form = document.getElementById('form')
+    form.name.value = ''
+    form.email.value = ''
+    form.subject.value = ''
+    form.message.value = ''
+  }
 }
 
-const { name, email, subject, message } = form
+const form = document.getElementById('form')
+
 // on submit event
 form.addEventListener('submit', (e) => {
   e.preventDefault()
-
+  const name = form.name.value
+  const email = form.email.value
+  const subject = form.subject.value
+  const message = form.message.value
   // console.log("button clicked");
   if (validateForm(form)) {
-    // base data object
-    const data = {
-      id: '',
-      sender: '',
-      email: '',
-      subject: '',
-      mail: '',
-      posted: ''
-    }
-    // storing the data
-    const acceptData = () => {
-      try {
-        data.id = Date.now()
-        data.sender = sender.value
-        data.email = email.value
-        data.subject = subject.value
-        data.mail = mail.value
-
-        // getting today's date
-        let today = Date.now()
-        today = new Date(today).toString()
-        data.posted = today
-
-        return data
-      } catch (error) {
-        console.log('Error while storing data in local storage:')
-        console.log(error)
-      }
-    }
-    mailArray.push(acceptData())
-    window.localStorage.setItem('mail', JSON.stringify(mailArray))
-    sender.value = ''
-    email.value = ''
-    subject.value = ''
-    mail.value = ''
+    sendMessage(name, email, subject, message)
   }
 })
 
 // validate input fields
-// User Validation
 const validateForm = (form) => {
   let isRequired = true
 

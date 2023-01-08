@@ -1,8 +1,8 @@
-const baseURL = 'http://localhost:3000/post/all'
+import baseURL from '../../../helpers/baseURL.js'
 const articles = document.getElementById('articles')
 const getAllPosts = async () => {
   try {
-    const response = await fetch(baseURL)
+    const response = await fetch(`${baseURL}/post/all`)
     const data = await response.json()
     const blogs = data.data
     return blogs
@@ -14,7 +14,7 @@ const getAllPosts = async () => {
 // render all posts
 getAllPosts()
   .then((res) => {
-    res.forEach((item) => {
+    res?.forEach((item) => {
       articles.insertAdjacentHTML(
         'afterbegin',
         `
@@ -56,16 +56,13 @@ getAllPosts()
 // delete a post
 const deletePost = async (id) => {
   try {
-    const deletePostResponse = await fetch(
-      `http://localhost:3000/post/delete/${id}`,
-      {
-        headers: {
-          'content-type': 'application/json',
-          Authorization: `JWT ${sessionStorage.getItem('auth-token')}`
-        },
-        method: 'DELETE'
-      }
-    )
+    const deletePostResponse = await fetch(`${baseURL}/post/delete/${id}`, {
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `JWT ${sessionStorage.getItem('auth-token')}`
+      },
+      method: 'DELETE'
+    })
     const data = await deletePostResponse.json()
     if (data && data.statusCode === 200) {
       location.reload()

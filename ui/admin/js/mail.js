@@ -1,8 +1,8 @@
-const baseURL = 'http://localhost:3000/mail/all'
+import baseURL from '../../../helpers/baseURL.js'
 const mail = document.getElementById('mail')
 const getAllMessages = async () => {
   try {
-    const response = await fetch(baseURL, {
+    const response = await fetch(`${baseURL}/mail/all`, {
       headers: {
         'content-type': 'application/json',
         Authorization: `JWT ${sessionStorage.getItem('auth-token')}`
@@ -18,7 +18,7 @@ const getAllMessages = async () => {
 
 // render all messages
 getAllMessages().then((res) => {
-  res.forEach((item) => {
+  res?.forEach((item) => {
     mail.insertAdjacentHTML(
       'afterbegin',
       `

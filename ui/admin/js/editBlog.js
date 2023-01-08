@@ -1,9 +1,11 @@
+import baseURL from '../../../helpers/baseURL.js'
+
 const newURL = new URL(location.href)
 const postID = newURL.hash.replace('#', '')
 
 const getPost = async (id) => {
   try {
-    const getPostResponse = await fetch(`http://localhost:3000/post/get/${id}`)
+    const getPostResponse = await fetch(`${baseURL}/post/get/${id}`)
     const data = await getPostResponse.json()
     return data.data[0]
   } catch (error) {
@@ -46,21 +48,18 @@ function readImage(file) {
 // update a post
 const updatePost = async (id, title, caption, content) => {
   try {
-    const updatePostResponse = await fetch(
-      `http://localhost:3000/post/update/${id}`,
-      {
-        headers: {
-          'content-type': 'application/json',
-          Authorization: `JWT ${sessionStorage.getItem('auth-token')}`
-        },
-        method: 'PATCH',
-        body: JSON.stringify({
-          title,
-          caption,
-          content
-        })
-      }
-    )
+    const updatePostResponse = await fetch(`${baseURL}/post/update/${id}`, {
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `JWT ${sessionStorage.getItem('auth-token')}`
+      },
+      method: 'PATCH',
+      body: JSON.stringify({
+        title,
+        caption,
+        content
+      })
+    })
     const data = await updatePostResponse.json()
     if (data && data.statusCode === 200) {
       location.href = '/ui/admin/pages/blogs.html'
