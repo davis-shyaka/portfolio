@@ -1,8 +1,8 @@
-const baseURL = 'http://localhost:3000/comment/all'
+import baseURL from '../../../helpers/baseURL.js'
 const commentsDOM = document.getElementById('comments')
 const getAllComments = async () => {
   try {
-    const response = await fetch(baseURL, {
+    const response = await fetch(`${baseURL}/comment/all`, {
       headers: {
         'content-type': 'application/json',
         Authorization: `JWT ${sessionStorage.getItem('auth-token')}`

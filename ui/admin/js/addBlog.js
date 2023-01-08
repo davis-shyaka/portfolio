@@ -1,21 +1,18 @@
-// create a post
+import baseURL from '../../../helpers/baseURL.js'
 const createPost = async (title, caption, content) => {
   try {
-    const createPostResponse = await fetch(
-      `http://localhost:3000/post/create`,
-      {
-        headers: {
-          'content-type': 'application/json',
-          Authorization: `JWT ${sessionStorage.getItem('auth-token')}`
-        },
-        method: 'POST',
-        body: JSON.stringify({
-          title,
-          caption,
-          content
-        })
-      }
-    )
+    const createPostResponse = await fetch(`${baseURL}/post/create`, {
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `JWT ${sessionStorage.getItem('auth-token')}`
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        title,
+        caption,
+        content
+      })
+    })
     const data = await createPostResponse.json()
     if (data && data.statusCode === 201) {
       location.href = '/ui/admin/pages/blogs.html'

@@ -1,8 +1,8 @@
-const baseURL = 'http://localhost:3000/user/all'
+import baseURL from '../../../helpers/baseURL.js'
 const articles = document.getElementById('articles')
 const getAllUsers = async () => {
   try {
-    const response = await fetch(baseURL, {
+    const response = await fetch(`${baseURL}/user/all`, {
       headers: {
         'content-type': 'application/json',
         Authorization: `JWT ${sessionStorage.getItem('auth-token')}`
@@ -19,7 +19,7 @@ const getAllUsers = async () => {
 // render all users
 getAllUsers()
   .then((res) => {
-    res.forEach((item) => {
+    res?.forEach((item) => {
       articles.insertAdjacentHTML(
         'afterbegin',
         `
@@ -62,16 +62,13 @@ getAllUsers()
 // delete a user
 const deleteUser = async (id) => {
   try {
-    const deleteUserResponse = await fetch(
-      `http://localhost:3000/user/delete/${id}`,
-      {
-        headers: {
-          'content-type': 'application/json',
-          Authorization: `JWT ${sessionStorage.getItem('auth-token')}`
-        },
-        method: 'DELETE'
-      }
-    )
+    const deleteUserResponse = await fetch(`${baseURL}/user/delete/${id}`, {
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `JWT ${sessionStorage.getItem('auth-token')}`
+      },
+      method: 'DELETE'
+    })
     const data = await deleteUserResponse.json()
     if (data && data.statusCode === 200) {
       location.reload()

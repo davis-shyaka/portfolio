@@ -1,7 +1,7 @@
-const baseURL = 'http://localhost:3000/post/all'
+import baseURL from '../../../helpers/baseURL.js'
 const getAllPosts = async () => {
   try {
-    const response = await fetch(baseURL)
+    const response = await fetch(`${baseURL}/post/all`)
     const data = await response.json()
     const blogs = data.data
     return blogs

@@ -1,4 +1,5 @@
-const baseURL = 'http://localhost:3000/user/sign_up'
+import baseURL from '../../../helpers/baseURL.js'
+
 const createUser = async (
   surname,
   givenName,
@@ -7,7 +8,7 @@ const createUser = async (
   confirm_password
 ) => {
   try {
-    const response = await fetch(baseURL, {
+    const response = await fetch(`${baseURL}/user/sign_up`, {
       method: 'post',
       headers: {
         'content-type': 'application/json'
