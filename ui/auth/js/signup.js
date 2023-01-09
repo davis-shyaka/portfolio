@@ -22,7 +22,6 @@ const createUser = async (
       })
     })
     const data = await response.json()
-    console.log(data)
     if (data?.statusCode === 201) {
       location.href = '/ui/auth/login.html'
     } else {

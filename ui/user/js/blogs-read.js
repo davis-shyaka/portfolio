@@ -25,7 +25,7 @@ const getPost = async () => {
 // get all comments on this post
 const getAllComments = async () => {
   try {
-    const response = await fetch(`${baseURL}/comment/all`)
+    const response = await fetch(`${baseURL}/post/${postID}/comment/all`)
     const data = await response.json()
     const comments = data.data
     return comments
@@ -37,21 +37,24 @@ const getAllComments = async () => {
 // create a comment on this post
 const createComment = async (comment) => {
   try {
-    const response = await fetch(
-      `${baseURL}/comment/create/on/post/${postID}`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `JWT ${sessionStorage.getItem('auth-token')}`
-        },
-        body: JSON.stringify({
-          comment
-        })
-      }
-    )
+    const response = await fetch(`${baseURL}/post/create/comment/${postID}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `JWT ${sessionStorage.getItem('auth-token')}`
+      },
+      body: JSON.stringify({
+        comment
+      })
+    })
     const data = await response.json()
-    console.log(data)
+    if (data.success === false) {
+      location.href = '/ui/auth/login.html'
+    } else {
+      const comment = document.getElementById('comment-area')
+      comment.value = ''
+      location.reload()
+    }
   } catch (error) {
     console.log('Error creating comment: ', error.message)
   }
@@ -103,7 +106,7 @@ getPost().then((res) => {
   // create comment on the post
   commentForm.addEventListener('submit', (e) => {
     e.preventDefault()
-    const commentText = commentForm.value
+    const commentText = comment.value
     if (validateForm(commentForm)) {
       createComment(commentText)
     }

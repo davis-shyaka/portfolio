@@ -20,7 +20,7 @@ getAllPosts()
         `
           <tr>
             <td data-label="Cover">
-            <!-- <img src="${item.cover}" alt="" srcset="" /> -->
+            <img src="${item.cover}" alt="" srcset="" />
             </td>
           <td data-label="Title">${item.title}</td>
           <td data-label="Publ. Date">${item.createdOn}</td>
