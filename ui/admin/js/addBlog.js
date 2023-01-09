@@ -1,5 +1,5 @@
 import baseURL from '../../../helpers/baseURL.js'
-const createPost = async (title, caption, content) => {
+const createPost = async (cover, title, caption, content) => {
   try {
     const createPostResponse = await fetch(`${baseURL}/post/create`, {
       headers: {
@@ -8,6 +8,7 @@ const createPost = async (title, caption, content) => {
       },
       method: 'POST',
       body: JSON.stringify({
+        cover,
         title,
         caption,
         content
@@ -45,16 +46,20 @@ function readImage(file) {
     })
   })
 }
+
+image.addEventListener('change', (e) => {
+  showPreview(e)
+})
 // on submit event
 form.addEventListener('submit', (e) => {
   e.preventDefault()
-
+  const cover = preview.src
   const title = form.title.value
   const caption = form.caption.value
   const content = form.content.value
   // console.log("button clicked");
   if (validateForm(form)) {
-    createPost(title, caption, content)
+    createPost(cover, title, caption, content)
   }
 })
 
